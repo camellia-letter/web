@@ -1,8 +1,5 @@
-/* eslint-disable @typescript-eslint/no-require-imports */
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // Vercel 서버리스 환경에서 Prisma 사용을 위한 설정
-  outputFileTracingRoot: require('path').join(__dirname, '../../'),
   images: {
     remotePatterns: [
       // CloudType 호스팅
