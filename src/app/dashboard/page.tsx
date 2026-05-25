@@ -1,7 +1,6 @@
 import { auth } from '@/auth';
 import { redirect } from 'next/navigation';
 import Link from 'next/link';
-import { cookies } from 'next/headers';
 import {
   Alert,
   Button,
@@ -195,10 +194,7 @@ const DashboardPage = async () => {
   const adminUrl = process.env.NEXT_PUBLIC_ADMIN_URL || 'http://localhost:4001';
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:4000';
 
-  const cookieStore = await cookies();
-  const sessionToken =
-    cookieStore.get('authjs.session-token')?.value ||
-    cookieStore.get('__Secure-authjs.session-token')?.value;
+  const sessionToken = session.sessionToken;
 
   const adminJwt = sessionToken ? await exchangeSessionForJwt(session.user.id, sessionToken) : null;
 
