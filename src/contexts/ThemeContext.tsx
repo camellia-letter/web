@@ -1,8 +1,8 @@
 'use client';
 
 import { createContext, useContext, ReactNode } from 'react';
-import { DEFAULT_THEME } from '@/types/invitation';
-import type { InvitationTheme, FontFamily, GradientConfig } from '@/types/invitation';
+import { DEFAULT_THEME } from '@camellia/shared-types';
+import type { InvitationTheme, FontFamily, GradientConfig } from '@camellia/shared-types';
 import { FONT_FAMILY_CSS } from '@/lib/fonts';
 
 interface ThemeContextType {

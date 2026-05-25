@@ -1,7 +1,7 @@
 'use client';
 
 import { Container, Paper, Stack, Text, Title, Flex } from '@mantine/core';
-import type { TransportBlockData, TransportType } from '@/types/invitation';
+import type { TransportBlockData, TransportType } from '@camellia/shared-types';
 import { useTheme } from '@/contexts/ThemeContext';
 import { withAlpha } from '@/lib/themeUtils';
 

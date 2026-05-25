@@ -1,4 +1,4 @@
-import type { ThemeColors } from '@/types/invitation';
+import type { ThemeColors } from '@camellia/shared-types';
 
 // 색상을 투명도와 함께 반환
 export const withAlpha = (color: string, alpha: number): string => {

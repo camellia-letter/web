@@ -1,7 +1,7 @@
 import { cache } from 'react';
-import type { Invitation, InvitationStats } from '@/types/invitation';
-import type { GuestBook, CreateGuestBookDto } from '@/types/guestbook';
-import type { Rsvp, CreateRsvpDto } from '@/types/rsvp';
+import type { Invitation, InvitationStats } from '@camellia/shared-types';
+import type { GuestBook, CreateGuestBookDto } from '@camellia/shared-types';
+import type { Rsvp, CreateRsvpDto } from '@camellia/shared-types';
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4002';
 const isDev = process.env.NODE_ENV === 'development';

@@ -1,4 +1,4 @@
-import { ErrorCode, ERROR_MESSAGES } from '@/types/error';
+import { ErrorCode, ERROR_MESSAGES } from '@camellia/shared-types';
 
 export interface ParsedError {
   code: ErrorCode;

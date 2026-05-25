@@ -1,7 +1,7 @@
 import { useMemo, useCallback, memo } from 'react';
 import dynamic from 'next/dynamic';
 import { Stack, Skeleton as MantineSkeleton } from '@mantine/core';
-import type { InvitationBlock, Invitation } from '@/types/invitation';
+import type { InvitationBlock, Invitation } from '@camellia/shared-types';
 import { AnimatedBlock } from '@/components/AnimatedBlock';
 
 // Light components - static import (always needed, small size)

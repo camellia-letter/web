@@ -14,9 +14,9 @@ import {
   Title,
 } from '@mantine/core';
 import { createRsvp } from '@/lib/api';
-import type { RsvpBlockData, AttendanceStatus, MealType } from '@/types/invitation';
-import type { CreateRsvpDto } from '@/types/rsvp';
-import { CreateRsvpDtoSchema } from '@/schemas';
+import type { RsvpBlockData, AttendanceStatus, MealType } from '@camellia/shared-types';
+import type { CreateRsvpDto } from '@camellia/shared-types';
+import { CreateRsvpDtoSchema } from '@camellia/shared-types';
 import { useTheme } from '@/contexts/ThemeContext';
 import { withAlpha } from '@/lib/themeUtils';
 

@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { Container, Stack, Title, TextInput, Button, Card, Text, Grid, Table } from '@mantine/core';
 import { IconLock } from '@tabler/icons-react';
-import type { Invitation } from '@/types/invitation';
+import type { Invitation } from '@camellia/shared-types';
 import { formatDateKR } from '@/lib/dateUtils';
 
 interface RsvpListContentProps {

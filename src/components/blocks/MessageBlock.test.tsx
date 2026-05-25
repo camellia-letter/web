@@ -3,7 +3,7 @@ import { render, screen } from '@testing-library/react';
 import { MantineProvider } from '@mantine/core';
 import { MessageBlock } from './MessageBlock';
 import { ThemeProvider } from '@/contexts/ThemeContext';
-import { DEFAULT_THEME } from '@/types/invitation';
+import { DEFAULT_THEME } from '@camellia/shared-types';
 
 describe('MessageBlock', () => {
   const renderWithTheme = (ui: React.ReactElement) => {

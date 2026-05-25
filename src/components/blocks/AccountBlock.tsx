@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { Accordion, Button, Container, Flex, Paper, Stack, Text, Title } from '@mantine/core';
-import type { AccountInfo, AccountBlockData, ThemeColors } from '@/types/invitation';
+import type { AccountInfo, AccountBlockData, ThemeColors } from '@camellia/shared-types';
 import { useTheme } from '@/contexts/ThemeContext';
 import { withAlpha } from '@/lib/themeUtils';
 

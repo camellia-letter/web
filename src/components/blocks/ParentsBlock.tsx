@@ -1,7 +1,7 @@
 'use client';
 
 import { Container, Stack, Text, Box, Flex, Divider } from '@mantine/core';
-import type { ParentsBlockData } from '@/types/invitation';
+import type { ParentsBlockData } from '@camellia/shared-types';
 import { useTheme } from '@/contexts/ThemeContext';
 import { withAlpha } from '@/lib/themeUtils';
 
