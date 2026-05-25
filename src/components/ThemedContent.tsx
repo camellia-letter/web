@@ -9,7 +9,7 @@ import { ShareButtons } from '@/components/ShareButtons';
 import { CalendarButtons } from '@/components/CalendarButtons';
 import { trackView } from '@/lib/api';
 import { safeParseDate, formatDateKR, formatTimeKR } from '@/lib/dateUtils';
-import type { Invitation } from '@camellia/shared-types';
+import type { Invitation } from '@camellia-letter/shared-types';
 import { withAlpha } from '@/lib/themeUtils';
 
 interface ThemedContentProps {

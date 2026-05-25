@@ -15,8 +15,8 @@ import {
   Title,
 } from '@mantine/core';
 import { getGuestbooks, createGuestbook, deleteGuestbook } from '@/lib/api';
-import type { GuestBook } from '@camellia/shared-types';
-import { CreateGuestBookDtoSchema } from '@camellia/shared-types';
+import type { GuestBook } from '@camellia-letter/shared-types';
+import { CreateGuestBookDtoSchema } from '@camellia-letter/shared-types';
 import { useTheme } from '@/contexts/ThemeContext';
 import { withAlpha } from '@/lib/themeUtils';
 import { useToast } from '@/components/ui/Toast';

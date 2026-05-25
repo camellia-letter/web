@@ -1,6 +1,6 @@
 import { Container, Stack, Text, Title, Divider } from '@mantine/core';
 import { useTheme } from '@/contexts/ThemeContext';
-import type { HeaderBlockData } from '@camellia/shared-types';
+import type { HeaderBlockData } from '@camellia-letter/shared-types';
 
 interface HeaderBlockProps {
   data: HeaderBlockData;
