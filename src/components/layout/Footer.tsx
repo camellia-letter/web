@@ -1,4 +1,4 @@
-import { AppShell, AppShellFooter, Container, Text } from '@mantine/core';
+import { AppShell, AppShellFooter, Container, Text } from "@mantine/core";
 
 const footerStyle = {
   position: 'static',

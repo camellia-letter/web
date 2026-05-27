@@ -7,8 +7,8 @@
  * - 자동 서브셋 생성 및 preload
  */
 
-import localFont from 'next/font/local';
-import { Noto_Sans_KR, Noto_Serif_KR, Gowun_Batang, Nanum_Myeongjo } from 'next/font/google';
+import localFont from "next/font/local";
+import { Noto_Sans_KR, Noto_Serif_KR, Gowun_Batang, Nanum_Myeongjo } from "next/font/google";
 
 export const maruBuri = localFont({
   src: [

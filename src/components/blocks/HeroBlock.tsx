@@ -1,5 +1,5 @@
-import { Paper, Box } from '@mantine/core';
-import { useTheme } from '@/contexts/ThemeContext';
+import { Paper, Box } from "@mantine/core";
+import { useTheme } from "@/contexts/ThemeContext";
 
 interface HeroBlockProps {
   data: {

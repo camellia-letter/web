@@ -1,4 +1,4 @@
-import { z } from 'zod';
+import { z } from "zod";
 export declare const qrCodePositionSchema: z.ZodEnum<{
     "top-right": "top-right";
     "bottom-center": "bottom-center";

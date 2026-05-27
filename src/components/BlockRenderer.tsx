@@ -1,14 +1,14 @@
-import { useMemo, useCallback, memo } from 'react';
-import dynamic from 'next/dynamic';
-import { Stack, Skeleton as MantineSkeleton } from '@mantine/core';
-import type { InvitationBlock, Invitation } from '@camellia-letter/shared-types';
-import { AnimatedBlock } from '@/components/AnimatedBlock';
+import { useMemo, useCallback, memo } from "react";
+import dynamic from "next/dynamic";
+import { Stack, Skeleton as MantineSkeleton } from "@mantine/core";
+import type { InvitationBlock, Invitation } from "@camellia-letter/shared-types";
+import { AnimatedBlock } from "@/components/AnimatedBlock";
 
 // Light components - static import (always needed, small size)
-import { HeaderBlock } from '@/components/blocks/HeaderBlock';
-import { HeroBlock } from '@/components/blocks/HeroBlock';
-import { MessageBlock } from '@/components/blocks/MessageBlock';
-import { InfoBlock } from '@/components/blocks/InfoBlock';
+import { HeaderBlock } from "@/components/blocks/HeaderBlock";
+import { HeroBlock } from "@/components/blocks/HeroBlock";
+import { MessageBlock } from "@/components/blocks/MessageBlock";
+import { InfoBlock } from "@/components/blocks/InfoBlock";
 
 // Block loading skeleton
 const BlockSkeleton = () => {

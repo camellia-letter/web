@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState } from "react";
 import {
   Button,
   Container,
@@ -12,13 +12,13 @@ import {
   TextInput,
   Textarea,
   Title,
-} from '@mantine/core';
-import { createRsvp } from '@/lib/api';
-import type { RsvpBlockData, AttendanceStatus, MealType } from '@camellia-letter/shared-types';
-import type { CreateRsvpDto } from '@camellia-letter/shared-types';
-import { CreateRsvpDtoSchema } from '@camellia-letter/shared-types';
-import { useTheme } from '@/contexts/ThemeContext';
-import { withAlpha } from '@/lib/themeUtils';
+} from "@mantine/core";
+import { createRsvp } from "@/lib/api";
+import type { RsvpBlockData, AttendanceStatus, MealType } from "@camellia-letter/shared-types";
+import type { CreateRsvpDto } from "@camellia-letter/shared-types";
+import { CreateRsvpDtoSchema } from "@camellia-letter/shared-types";
+import { useTheme } from "@/contexts/ThemeContext";
+import { withAlpha } from "@/lib/themeUtils";
 
 interface RsvpBlockProps {
   invitationId: string;

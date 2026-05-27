@@ -1,9 +1,9 @@
-import { describe, it, expect } from 'vitest';
-import { render, screen } from '@testing-library/react';
-import { MantineProvider } from '@mantine/core';
-import { MessageBlock } from './MessageBlock';
-import { ThemeProvider } from '@/contexts/ThemeContext';
-import { DEFAULT_THEME } from '@camellia-letter/shared-types';
+import { describe, it, expect } from "vitest";
+import { render, screen } from "@testing-library/react";
+import { MantineProvider } from "@mantine/core";
+import { MessageBlock } from "./MessageBlock";
+import { ThemeProvider } from "@/contexts/ThemeContext";
+import { DEFAULT_THEME } from "@camellia-letter/shared-types";
 
 describe('MessageBlock', () => {
   const renderWithTheme = (ui: React.ReactElement) => {

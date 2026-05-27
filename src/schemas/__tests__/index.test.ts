@@ -1,10 +1,10 @@
-import { describe, it, expect } from 'vitest';
+import { describe, it, expect } from "vitest";
 import {
   CreateInvitationDtoSchema,
   UpdateInvitationDtoSchema,
   CreateRsvpDtoSchema,
   CreateGuestBookDtoSchema,
-} from '../../schemas';
+} from "../../schemas";
 
 describe('CreateInvitationDtoSchema', () => {
   const validData = {

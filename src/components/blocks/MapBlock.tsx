@@ -1,9 +1,9 @@
 'use client';
 
-import { Anchor, Button, Container, Flex, Paper, Stack, Text, Title } from '@mantine/core';
-import { useTheme } from '@/contexts/ThemeContext';
-import { withAlpha } from '@/lib/themeUtils';
-import { KakaoMap } from '@/components/KakaoMap';
+import { Anchor, Button, Container, Flex, Paper, Stack, Text, Title } from "@mantine/core";
+import { useTheme } from "@/contexts/ThemeContext";
+import { withAlpha } from "@/lib/themeUtils";
+import { KakaoMap } from "@/components/KakaoMap";
 
 interface MapBlockProps {
   venue: string;

@@ -1,7 +1,7 @@
 'use client';
 
-import { Component, ReactNode } from 'react';
-import { Button, Container, Flex, Paper, Stack, Text, Title } from '@mantine/core';
+import { Component, ReactNode } from "react";
+import { Button, Container, Flex, Paper, Stack, Text, Title } from "@mantine/core";
 
 interface Props {
   children: ReactNode;

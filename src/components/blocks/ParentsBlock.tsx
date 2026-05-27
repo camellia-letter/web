@@ -1,9 +1,9 @@
 'use client';
 
-import { Container, Stack, Text, Box, Flex, Divider } from '@mantine/core';
-import type { ParentsBlockData } from '@camellia-letter/shared-types';
-import { useTheme } from '@/contexts/ThemeContext';
-import { withAlpha } from '@/lib/themeUtils';
+import { Container, Stack, Text, Box, Flex, Divider } from "@mantine/core";
+import type { ParentsBlockData } from "@camellia-letter/shared-types";
+import { useTheme } from "@/contexts/ThemeContext";
+import { withAlpha } from "@/lib/themeUtils";
 
 interface ParentsBlockProps {
   data: ParentsBlockData;

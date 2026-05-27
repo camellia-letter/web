@@ -1,7 +1,7 @@
-import NextAuth from 'next-auth';
-import Google from 'next-auth/providers/google';
-import Kakao from 'next-auth/providers/kakao';
-import Naver from 'next-auth/providers/naver';
+import NextAuth from "next-auth";
+import Google from "next-auth/providers/google";
+import Kakao from "next-auth/providers/kakao";
+import Naver from "next-auth/providers/naver";
 
 // 환경 변수 검증
 const requiredEnvVars = {

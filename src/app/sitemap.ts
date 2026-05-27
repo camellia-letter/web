@@ -1,5 +1,5 @@
-import type { MetadataRoute } from 'next';
-import { getInvitations } from '@/lib/api';
+import type { MetadataRoute } from "next";
+import { getInvitations } from "@/lib/api";
 
 const sitemap = async (): Promise<MetadataRoute.Sitemap> => {
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:4000';

@@ -1,4 +1,4 @@
-import { Paper, Skeleton, Stack, Text } from '@mantine/core';
+import { Paper, Skeleton, Stack, Text } from "@mantine/core";
 
 /**
  * MapBlockSkeleton - Loading skeleton for MapBlock

@@ -1,4 +1,4 @@
-import { z } from 'zod';
+import { z } from "zod";
 export declare const requiredString: (fieldName: string) => z.ZodString;
 export declare const BlockTypeSchema: z.ZodEnum<{
     HERO: "HERO";
@@ -467,4 +467,4 @@ export type UpdateRsvpDtoInput = z.input<typeof UpdateRsvpDtoSchema>;
 export type CreateGuestBookDtoInput = z.input<typeof CreateGuestBookDtoSchema>;
 export type UpdateGuestBookDtoInput = z.input<typeof UpdateGuestBookDtoSchema>;
 export type DeleteGuestBookDtoInput = z.input<typeof DeleteGuestBookDtoSchema>;
-export * from './print-invitation';
+export * from "./print-invitation";

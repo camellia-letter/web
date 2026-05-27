@@ -1,16 +1,16 @@
 'use client';
 
-import { useEffect } from 'react';
-import { Anchor, Button, Container, Flex, Paper, Stack, Text, Title } from '@mantine/core';
-import { ThemeProvider, useTheme } from '@/contexts/ThemeContext';
-import { BlockRenderer } from '@/components/BlockRenderer';
-import { AnimatedBlock } from '@/components/AnimatedBlock';
-import { ShareButtons } from '@/components/ShareButtons';
-import { CalendarButtons } from '@/components/CalendarButtons';
-import { trackView } from '@/lib/api';
-import { safeParseDate, formatDateKR, formatTimeKR } from '@/lib/dateUtils';
-import type { Invitation } from '@camellia-letter/shared-types';
-import { withAlpha } from '@/lib/themeUtils';
+import { useEffect } from "react";
+import { Anchor, Button, Container, Flex, Paper, Stack, Text, Title } from "@mantine/core";
+import { ThemeProvider, useTheme } from "@/contexts/ThemeContext";
+import { BlockRenderer } from "@/components/BlockRenderer";
+import { AnimatedBlock } from "@/components/AnimatedBlock";
+import { ShareButtons } from "@/components/ShareButtons";
+import { CalendarButtons } from "@/components/CalendarButtons";
+import { trackView } from "@/lib/api";
+import { safeParseDate, formatDateKR, formatTimeKR } from "@/lib/dateUtils";
+import type { Invitation } from "@camellia-letter/shared-types";
+import { withAlpha } from "@/lib/themeUtils";
 
 interface ThemedContentProps {
   invitation: Invitation;

@@ -1,6 +1,6 @@
-import { auth } from '@/auth';
-import { redirect } from 'next/navigation';
-import Link from 'next/link';
+import { auth } from "@/auth";
+import { redirect } from "next/navigation";
+import Link from "next/link";
 import {
   Alert,
   Button,
@@ -13,11 +13,11 @@ import {
   Text,
   ThemeIcon,
   Title,
-} from '@mantine/core';
-import { IconPlus } from '@tabler/icons-react';
-import { getInvitations, exchangeSessionForJwt } from '@/lib/api';
-import type { Invitation } from '@camellia-letter/shared-types';
-import { Header } from '@/components/layout/Header';
+} from "@mantine/core";
+import { IconPlus } from "@tabler/icons-react";
+import { getInvitations, exchangeSessionForJwt } from "@/lib/api";
+import type { Invitation } from "@camellia-letter/shared-types";
+import { Header } from "@/components/layout/Header";
 
 const formatDate = (dateString: string) => {
   const date = new Date(dateString);

@@ -1,7 +1,7 @@
-import { Anchor, AppShell, AppShellHeader, Avatar, Button, Flex, Group, Text } from '@mantine/core';
-import Link from 'next/link';
-import { signOut } from '@/auth';
-import type { Session } from 'next-auth';
+import { Anchor, AppShell, AppShellHeader, Avatar, Button, Flex, Group, Text } from "@mantine/core";
+import Link from "next/link";
+import { signOut } from "@/auth";
+import type { Session } from "next-auth";
 
 interface HeaderProps {
   variant: 'landing' | 'dashboard';

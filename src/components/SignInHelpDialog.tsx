@@ -1,7 +1,7 @@
 'use client';
 
-import { Button, Modal, Stack, Text } from '@mantine/core';
-import { useDisclosure } from '@mantine/hooks';
+import { Button, Modal, Stack, Text } from "@mantine/core";
+import { useDisclosure } from "@mantine/hooks";
 
 export const SignInHelpDialog = () => {
   const [opened, { open, close }] = useDisclosure(false);

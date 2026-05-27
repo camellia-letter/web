@@ -1,6 +1,6 @@
-import { auth } from '@/auth';
-import { cookies } from 'next/headers';
-import { NextResponse } from 'next/server';
+import { auth } from "@/auth";
+import { cookies } from "next/headers";
+import { NextResponse } from "next/server";
 
 export const GET = async () => {
   const session = await auth();

@@ -1,8 +1,8 @@
-import { notFound } from 'next/navigation';
-import type { Metadata } from 'next';
-import { getInvitationByIdOrSlug } from '@/lib/api';
-import { formatDateKR, safeParseDate } from '@/lib/dateUtils';
-import { ThemedContent } from '@/components/ThemedContent';
+import { notFound } from "next/navigation";
+import type { Metadata } from "next";
+import { getInvitationByIdOrSlug } from "@/lib/api";
+import { formatDateKR, safeParseDate } from "@/lib/dateUtils";
+import { ThemedContent } from "@/components/ThemedContent";
 
 interface PageProps {
   params: Promise<{ id: string }>;

@@ -1,5 +1,5 @@
-import { Button, Container, Flex, Paper, Stack, Text, Title } from '@mantine/core';
-import Link from 'next/link';
+import { Button, Container, Flex, Paper, Stack, Text, Title } from "@mantine/core";
+import Link from "next/link";
 
 const NotFound = () => {
   return (

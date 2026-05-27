@@ -1,6 +1,6 @@
-import { notFound } from 'next/navigation';
-import { getInvitationByIdOrSlug } from '@/lib/api';
-import { RsvpListContent } from './RsvpListContent';
+import { notFound } from "next/navigation";
+import { getInvitationByIdOrSlug } from "@/lib/api";
+import { RsvpListContent } from "./RsvpListContent";
 
 interface PageProps {
   params: Promise<{ id: string }>;

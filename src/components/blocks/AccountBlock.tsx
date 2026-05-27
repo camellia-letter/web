@@ -1,10 +1,10 @@
 'use client';
 
-import { useState } from 'react';
-import { Accordion, Button, Container, Flex, Paper, Stack, Text, Title } from '@mantine/core';
-import type { AccountInfo, AccountBlockData, ThemeColors } from '@camellia-letter/shared-types';
-import { useTheme } from '@/contexts/ThemeContext';
-import { withAlpha } from '@/lib/themeUtils';
+import { useState } from "react";
+import { Accordion, Button, Container, Flex, Paper, Stack, Text, Title } from "@mantine/core";
+import type { AccountInfo, AccountBlockData, ThemeColors } from "@camellia-letter/shared-types";
+import { useTheme } from "@/contexts/ThemeContext";
+import { withAlpha } from "@/lib/themeUtils";
 
 interface AccountBlockProps {
   data: AccountBlockData;

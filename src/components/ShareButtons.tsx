@@ -1,10 +1,10 @@
 'use client';
 
-import { useEffect, useState } from 'react';
-import { Button, Stack } from '@mantine/core';
-import { IconCopy, IconMessageCircle } from '@tabler/icons-react';
-import { trackShare } from '@/lib/api';
-import { useToast } from '@/components/ui/Toast';
+import { useEffect, useState } from "react";
+import { Button, Stack } from "@mantine/core";
+import { IconCopy, IconMessageCircle } from "@tabler/icons-react";
+import { trackShare } from "@/lib/api";
+import { useToast } from "@/components/ui/Toast";
 
 interface ShareButtonsProps {
   invitationId: string;

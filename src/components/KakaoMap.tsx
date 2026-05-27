@@ -1,8 +1,8 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
-import { Flex, Text } from '@mantine/core';
-import { KakaoMapScript } from './KakaoMapScript';
+import { useEffect, useRef, useState } from "react";
+import { Flex, Text } from "@mantine/core";
+import { KakaoMapScript } from "./KakaoMapScript";
 
 interface KakaoMapProps {
   lat: number;

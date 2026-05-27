@@ -1,7 +1,7 @@
 'use client';
 
-import { createContext, useContext, useMemo, ReactNode } from 'react';
-import { notifications } from '@mantine/notifications';
+import { createContext, useContext, useMemo, ReactNode } from "react";
+import { notifications } from "@mantine/notifications";
 
 export type ToastType = 'success' | 'error' | 'warning' | 'info';
 

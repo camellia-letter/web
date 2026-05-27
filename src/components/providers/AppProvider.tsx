@@ -1,9 +1,9 @@
 'use client';
 
-import { ReactNode } from 'react';
-import { createTheme, MantineProvider } from '@mantine/core';
-import { Notifications } from '@mantine/notifications';
-import { colors } from '@/styles/theme';
+import { ReactNode } from "react";
+import { createTheme, MantineProvider } from "@mantine/core";
+import { Notifications } from "@mantine/notifications";
+import { colors } from "@/styles/theme";
 
 const theme = createTheme({
   colors,

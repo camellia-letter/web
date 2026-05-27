@@ -1,7 +1,7 @@
-import { describe, it, expect, vi, beforeEach } from 'vitest';
-import { render, screen, fireEvent, waitFor } from '@testing-library/react';
-import { MantineProvider } from '@mantine/core';
-import { ShareButtons } from './ShareButtons';
+import { describe, it, expect, vi, beforeEach } from "vitest";
+import { render, screen, fireEvent, waitFor } from "@testing-library/react";
+import { MantineProvider } from "@mantine/core";
+import { ShareButtons } from "./ShareButtons";
 
 // Toast mock
 vi.mock('./ui/Toast', () => ({

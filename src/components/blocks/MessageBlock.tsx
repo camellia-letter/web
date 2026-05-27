@@ -1,7 +1,7 @@
 'use client';
 
-import { Container, Stack, Text, Title } from '@mantine/core';
-import { useTheme } from '@/contexts/ThemeContext';
+import { Container, Stack, Text, Title } from "@mantine/core";
+import { useTheme } from "@/contexts/ThemeContext";
 
 interface MessageBlockProps {
   data: {

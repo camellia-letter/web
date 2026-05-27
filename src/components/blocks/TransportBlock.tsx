@@ -1,9 +1,9 @@
 'use client';
 
-import { Container, Paper, Stack, Text, Title, Flex } from '@mantine/core';
-import type { TransportBlockData, TransportType } from '@camellia-letter/shared-types';
-import { useTheme } from '@/contexts/ThemeContext';
-import { withAlpha } from '@/lib/themeUtils';
+import { Container, Paper, Stack, Text, Title, Flex } from "@mantine/core";
+import type { TransportBlockData, TransportType } from "@camellia-letter/shared-types";
+import { useTheme } from "@/contexts/ThemeContext";
+import { withAlpha } from "@/lib/themeUtils";
 
 interface TransportBlockProps {
   data: TransportBlockData;

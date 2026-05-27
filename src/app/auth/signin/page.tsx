@@ -1,11 +1,11 @@
-import { signIn } from '@/auth';
-import { SignInHelpDialog } from '@/components/SignInHelpDialog';
-import { Anchor, Button, Divider, Flex, Paper, Stack, Text, Title } from '@mantine/core';
-import { IconBrandGoogle } from '@tabler/icons-react';
-import Link from 'next/link';
-import Image from 'next/image';
-import KaKaoLogin from '@/assets/kakao_login.png';
-import NaverLogin from '@/assets/naver_login.png';
+import { signIn } from "@/auth";
+import { SignInHelpDialog } from "@/components/SignInHelpDialog";
+import { Anchor, Button, Divider, Flex, Paper, Stack, Text, Title } from "@mantine/core";
+import { IconBrandGoogle } from "@tabler/icons-react";
+import Link from "next/link";
+import Image from "next/image";
+import KaKaoLogin from "@/assets/kakao_login.png";
+import NaverLogin from "@/assets/naver_login.png";
 
 const SignInPage = () => {
   const isNaverEnabled = Boolean(process.env.NAVER_CLIENT_ID && process.env.NAVER_CLIENT_SECRET);

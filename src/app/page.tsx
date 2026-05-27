@@ -9,7 +9,7 @@ import {
   Text,
   ThemeIcon,
   Title,
-} from '@mantine/core';
+} from "@mantine/core";
 import {
   IconArchive,
   IconCalendarEvent,
@@ -23,11 +23,11 @@ import {
   IconPhoto,
   IconRoute,
   IconWallet,
-} from '@tabler/icons-react';
-import Link from 'next/link';
-import { auth } from '@/auth';
-import { Header } from '@/components/layout/Header';
-import { Footer } from '@/components/layout/Footer';
+} from "@tabler/icons-react";
+import Link from "next/link";
+import { auth } from "@/auth";
+import { Header } from "@/components/layout/Header";
+import { Footer } from "@/components/layout/Footer";
 
 const features = [
   {

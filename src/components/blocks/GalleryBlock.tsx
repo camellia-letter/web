@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useCallback, memo } from 'react';
+import { useState, useCallback, memo } from "react";
 import {
   AspectRatio,
   Container,
@@ -11,11 +11,11 @@ import {
   Stack,
   Text,
   Title,
-} from '@mantine/core';
-import { Carousel } from '@mantine/carousel';
-import Image from 'next/image';
-import { useTheme } from '@/contexts/ThemeContext';
-import { withAlpha } from '@/lib/themeUtils';
+} from "@mantine/core";
+import { Carousel } from "@mantine/carousel";
+import Image from "next/image";
+import { useTheme } from "@/contexts/ThemeContext";
+import { withAlpha } from "@/lib/themeUtils";
 
 interface GalleryImage {
   url: string;

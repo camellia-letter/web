@@ -1,4 +1,4 @@
-import { InvitationSkeleton } from '@/components/Skeleton';
+import { InvitationSkeleton } from "@/components/Skeleton";
 
 const Loading = () => {
   return <InvitationSkeleton />;

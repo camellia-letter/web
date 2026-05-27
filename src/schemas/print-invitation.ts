@@ -2,7 +2,7 @@
  * 실물 청첩장 PDF 출력 관련 Zod 스키마
  */
 
-import { z } from 'zod';
+import { z } from "zod";
 
 /**
  * QR 코드 위치 스키마

@@ -1,11 +1,11 @@
 'use client';
 
-import { Container, Paper, Stack, Text, Title } from '@mantine/core';
-import { Calendar } from '@mantine/dates';
-import 'dayjs/locale/ko';
-import { useTheme } from '@/contexts/ThemeContext';
-import { withAlpha } from '@/lib/themeUtils';
-import { safeParseDate, formatDateKR, formatTimeKR } from '@/lib/dateUtils';
+import { Container, Paper, Stack, Text, Title } from "@mantine/core";
+import { Calendar } from "@mantine/dates";
+import "dayjs/locale/ko";
+import { useTheme } from "@/contexts/ThemeContext";
+import { withAlpha } from "@/lib/themeUtils";
+import { safeParseDate, formatDateKR, formatTimeKR } from "@/lib/dateUtils";
 
 interface InfoBlockProps {
   groomName: string;

@@ -6,7 +6,7 @@ import {
   SimpleGrid,
   Skeleton as MantineSkeleton,
   Stack,
-} from '@mantine/core';
+} from "@mantine/core";
 
 interface SkeletonProps {
   className?: string;

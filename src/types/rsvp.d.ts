@@ -1,4 +1,4 @@
-import type { AttendanceStatus, MealType } from './invitation';
+import type { AttendanceStatus, MealType } from "./invitation";
 export interface Rsvp {
     id: string;
     invitationId: string;

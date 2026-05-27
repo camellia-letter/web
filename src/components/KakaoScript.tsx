@@ -1,6 +1,6 @@
 'use client';
 
-import Script from 'next/script';
+import Script from "next/script";
 
 interface KakaoSDK {
   init: (appKey: string) => void;

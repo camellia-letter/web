@@ -1,4 +1,4 @@
-import type { MetadataRoute } from 'next';
+import type { MetadataRoute } from "next";
 
 const robots = (): MetadataRoute.Robots => {
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:4000';
