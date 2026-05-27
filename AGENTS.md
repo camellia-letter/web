@@ -12,12 +12,13 @@ Before ANY action:
 
 ## 🧠 Project Overview
 
-This is a structured monorepo project:
+This is the **web frontend application** (Next.js).
 
-- apps/web (Next.js)
-- apps/admin (Vite + React)
-- apps/api (NestJS)
-- packages/shared (shared types & utils)
+**⚠️ IMPORTANT: Work ONLY within the `/web` folder.**
+
+- Do NOT access parent directories (`../`)
+- Do NOT modify files outside `/web`
+- All references to AGENTS.md and WORK_RULES.md refer to files inside `/web`
 
 Architecture consistency is critical.
 

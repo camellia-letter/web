@@ -5,7 +5,6 @@ import { Button, Stack } from '@mantine/core';
 import { IconCopy, IconMessageCircle } from '@tabler/icons-react';
 import { trackShare } from '@/lib/api';
 import { useToast } from '@/components/ui/Toast';
-import { formatDateKR } from '@/lib/dateUtils';
 
 interface ShareButtonsProps {
   invitationId: string;
@@ -13,18 +12,20 @@ interface ShareButtonsProps {
   brideName: string;
   weddingDate: string;
   venue: string;
+  venueAddress: string;
   invitationUrl: string;
   mainImageUrl?: string;
 }
 
 export const ShareButtons = ({
   invitationId,
-  groomName,
-  brideName,
-  weddingDate,
-  venue,
+  groomName: _groomName,
+  brideName: _brideName,
+  weddingDate: _weddingDate,
+  venue: _venue,
+  venueAddress: _venueAddress,
   invitationUrl,
-  mainImageUrl,
+  mainImageUrl: _mainImageUrl,
 }: ShareButtonsProps) => {
   const [isKakaoReady, setIsKakaoReady] = useState(false);
   const { addToast } = useToast();
@@ -48,53 +49,10 @@ export const ShareButtons = ({
       return;
     }
 
-    const formattedDate = formatDateKR(weddingDate, {
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric',
+    // sendScrap 방식 사용 - OG 태그를 크롤링하여 자동으로 생성
+    window.Kakao.Share.sendScrap({
+      requestUrl: invitationUrl,
     });
-
-    if (mainImageUrl) {
-      window.Kakao.Share.sendDefault({
-        objectType: 'feed',
-        content: {
-          title: `${groomName} ♥ ${brideName} 결혼합니다`,
-          description: `${formattedDate}\n${venue}`,
-          imageUrl: mainImageUrl,
-          link: {
-            mobileWebUrl: invitationUrl,
-            webUrl: invitationUrl,
-          },
-        },
-        buttons: [
-          {
-            title: '청첩장 보기',
-            link: {
-              mobileWebUrl: invitationUrl,
-              webUrl: invitationUrl,
-            },
-          },
-        ],
-      });
-    } else {
-      window.Kakao.Share.sendDefault({
-        objectType: 'text',
-        text: `${groomName} ♥ ${brideName} 결혼합니다\n\n${formattedDate}\n${venue}`,
-        link: {
-          mobileWebUrl: invitationUrl,
-          webUrl: invitationUrl,
-        },
-        buttons: [
-          {
-            title: '청첩장 보기',
-            link: {
-              mobileWebUrl: invitationUrl,
-              webUrl: invitationUrl,
-            },
-          },
-        ],
-      });
-    }
 
     trackShare(invitationId);
   };

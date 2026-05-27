@@ -28,6 +28,13 @@ export const generateMetadata = async ({ params }: PageProps): Promise<Metadata>
     ? `${baseUrl}/invitation/${invitation.slug}`
     : `${baseUrl}/invitation/${invitation.id}`;
 
+  // 이미지 URL을 절대 URL로 변환
+  const absoluteImageUrl = invitation.mainImageUrl
+    ? invitation.mainImageUrl.startsWith('http')
+      ? invitation.mainImageUrl
+      : `${baseUrl}${invitation.mainImageUrl}`
+    : undefined;
+
   return {
     title,
     description,
@@ -39,14 +46,17 @@ export const generateMetadata = async ({ params }: PageProps): Promise<Metadata>
       description,
       url,
       type: 'website',
-      ...(invitation.mainImageUrl && {
-        images: [{ url: invitation.mainImageUrl, width: 800, height: 400 }],
+      ...(absoluteImageUrl && {
+        images: [{ url: absoluteImageUrl, width: 800, height: 400 }],
       }),
     },
     twitter: {
       card: 'summary_large_image',
       title,
       description,
+      ...(absoluteImageUrl && {
+        images: [absoluteImageUrl],
+      }),
     },
   };
 };
@@ -65,6 +75,13 @@ const InvitationPage = async ({ params }: PageProps) => {
     ? `${baseUrl}/invitation/${invitation.slug}`
     : `${baseUrl}/invitation/${invitation.id}`;
 
+  // 이미지 URL을 절대 URL로 변환
+  const absoluteImageUrl = invitation.mainImageUrl
+    ? invitation.mainImageUrl.startsWith('http')
+      ? invitation.mainImageUrl
+      : `${baseUrl}${invitation.mainImageUrl}`
+    : undefined;
+
   const startDate = safeParseDate(invitation.weddingDate);
   const jsonLd = startDate
     ? {
@@ -81,7 +98,7 @@ const InvitationPage = async ({ params }: PageProps) => {
           address: invitation.venueAddress,
         },
         url: invitationUrl,
-        ...(invitation.mainImageUrl && { image: invitation.mainImageUrl }),
+        ...(absoluteImageUrl && { image: absoluteImageUrl }),
       }
     : null;
 

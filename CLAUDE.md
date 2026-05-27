@@ -4,9 +4,11 @@
 
 This project uses `AGENTS.md` as the primary instruction file.
 
+**⚠️ IMPORTANT: Work ONLY within the `/web` folder. Do NOT access parent directories.**
+
 Before ANY work:
 
-👉 MUST read `./AGENTS.md`  
+👉 MUST read `./AGENTS.md`
 👉 MUST follow `./docs/WORK_RULES.md`
 
 ---

@@ -100,6 +100,7 @@ const ThemedContentInner = ({ invitation, invitationUrl }: ThemedContentProps) =
                   brideName={invitation.brideName}
                   weddingDate={invitation.weddingDate}
                   venue={invitation.venue}
+                  venueAddress={invitation.venueAddress}
                   invitationUrl={invitationUrl}
                   mainImageUrl={mainImageUrl}
                 />

@@ -6,7 +6,7 @@ interface KakaoSDK {
   init: (appKey: string) => void;
   isInitialized: () => boolean;
   Share?: {
-    sendDefault: (options: Record<string, unknown>) => void;
+    sendScrap: (options: { requestUrl: string }) => void;
   };
 }
 
