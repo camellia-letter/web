@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
+    "preinstall": "echo '@camellia-letter:registry=https://npm.pkg.github.com' > .npmrc && echo '//npm.pkg.github.com/:_authToken='$NPM_TOKEN >> .npmrc",
     "dev": "next dev -p 4000",
     "build": "next build",
     "start": "next start",
