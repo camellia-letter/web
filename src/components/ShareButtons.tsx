@@ -101,9 +101,9 @@ export const ShareButtons = ({
 
       alert('sendCustom 파라미터 준비 완료');
 
-      // sendCustom 방식 사용 - 카카오 개발자 콘솔에서 만든 템플릿 사용
-      window.Kakao.Share.sendCustom({
-        templateId: parseInt(templateId, 10),
+      const templateIdNum = parseInt(templateId, 10);
+      const shareParams = {
+        templateId: templateIdNum,
         templateArgs: {
           GROOM_NAME: groomName,
           BRIDE_NAME: brideName,
@@ -112,15 +112,29 @@ export const ShareButtons = ({
           THUMB: mainImageUrl || '',
           INVITATION_PATH: invitationPath,
         },
-        success: () => {
-          alert('카카오톡 공유 성공!');
-          trackShare(invitationId);
-        },
-        fail: (error) => {
-          alert(`카카오톡 공유 실패: ${error.message}`);
-          addToast('error', `카카오톡 공유 실패: ${error.message}`);
-        },
-      });
+      };
+
+      alert(`전달 파라미터: templateId=${templateIdNum}, INVITATION_PATH=${invitationPath}`);
+
+      // sendCustom 방식 사용 - 카카오 개발자 콘솔에서 만든 템플릿 사용
+      try {
+        alert('sendCustom 호출 직전');
+        window.Kakao.Share.sendCustom({
+          ...shareParams,
+          success: () => {
+            alert('카카오톡 공유 성공!');
+            trackShare(invitationId);
+          },
+          fail: (error) => {
+            alert(`카카오톡 공유 실패: ${error.message}`);
+            addToast('error', `카카오톡 공유 실패: ${error.message}`);
+          },
+        });
+        alert('sendCustom 호출 직후');
+      } catch (err) {
+        const msg = err instanceof Error ? err.message : String(err);
+        alert(`sendCustom 호출 중 에러: ${msg}`);
+      }
     } catch (error) {
       const errorMessage = error instanceof Error ? error.message : '알 수 없는 오류';
       alert(`카카오톡 공유 실패: ${errorMessage}`);
