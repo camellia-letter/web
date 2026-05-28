@@ -101,9 +101,15 @@ export const ShareButtons = ({
           THUMB: mainImageUrl || '',
           INVITATION_PATH: invitationPath,
         },
+        success: () => {
+          alert('카카오톡 공유 성공!');
+          trackShare(invitationId);
+        },
+        fail: (error) => {
+          alert(`카카오톡 공유 실패: ${error.message}`);
+          addToast('error', `카카오톡 공유 실패: ${error.message}`);
+        },
       });
-
-      trackShare(invitationId);
     } catch (error) {
       const errorMessage = error instanceof Error ? error.message : '알 수 없는 오류';
       alert(`카카오톡 공유 실패: ${errorMessage}`);
