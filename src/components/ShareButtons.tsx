@@ -142,10 +142,10 @@ export const ShareButtons = ({
         INVITATION_PATH: invitationPath,
       };
 
-      // 이미지가 있을 때만 추가 (절대 경로로 변환된 URL 사용)
-      if (absoluteImageUrl) {
-        templateArgs.THUMB = absoluteImageUrl;
-      }
+      // 임시: 이미지 제외하고 테스트 (4002 에러 디버깅용)
+      // if (absoluteImageUrl) {
+      //   templateArgs.THUMB = absoluteImageUrl;
+      // }
 
       window.Kakao.Share.sendCustom({
         templateId: parseInt(templateId, 10),
