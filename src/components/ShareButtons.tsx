@@ -45,24 +45,8 @@ export const ShareButtons = ({
 
   const handleKakaoShare = () => {
     try {
-      // 버튼 클릭 확인용
-      alert('카카오톡 공유 시작');
-
-      if (!window.Kakao) {
-        alert('에러: 카카오 SDK를 찾을 수 없습니다.');
-        addToast('error', '카카오 SDK를 찾을 수 없습니다.');
-        return;
-      }
-
-      if (!window.Kakao.isInitialized()) {
-        alert('에러: 카카오 SDK가 초기화되지 않았습니다.');
-        addToast('error', '카카오 SDK가 초기화되지 않았습니다.');
-        return;
-      }
-
-      if (!window.Kakao.Share) {
-        alert('에러: 카카오 공유 기능을 사용할 수 없습니다.');
-        addToast('error', '카카오 공유 기능을 사용할 수 없습니다.');
+      if (!window.Kakao || !window.Kakao.isInitialized() || !window.Kakao.Share) {
+        addToast('error', '카카오 SDK를 사용할 수 없습니다.');
         return;
       }
 
@@ -70,8 +54,6 @@ export const ShareButtons = ({
 
       // 템플릿 ID가 없으면 sendDefault 방식 사용
       if (!templateId) {
-        alert('템플릿 ID 없음 - sendDefault 방식 사용');
-
         const date = new Date(weddingDate);
         const year = date.getFullYear();
         const month = String(date.getMonth() + 1).padStart(2, '0');
@@ -128,18 +110,7 @@ export const ShareButtons = ({
         return;
       }
 
-      alert(`템플릿 ID: ${templateId}`);
-
-      // sendCustom 메서드 확인
-      if (typeof window.Kakao.Share.sendCustom !== 'function') {
-        alert('에러: sendCustom 메서드를 찾을 수 없습니다.');
-        alert(`사용 가능한 메서드: ${Object.keys(window.Kakao.Share).join(', ')}`);
-        return;
-      }
-
-      alert('sendCustom 호출 시작');
-
-      // 날짜 형식 포맷팅
+      // sendCustom 방식 사용 - 카카오 개발자 콘솔에서 만든 템플릿 사용
       const date = new Date(weddingDate);
       const year = date.getFullYear();
       const month = String(date.getMonth() + 1).padStart(2, '0');
@@ -147,7 +118,6 @@ export const ShareButtons = ({
       const weekdays = ['일요일', '월요일', '화요일', '수요일', '목요일', '금요일', '토요일'];
       const weekday = weekdays[date.getDay()];
       const hour = date.getHours();
-
       const formattedDateTime = `${year}년 ${month}월 ${day}일 ${weekday} ${hour}시`;
 
       // URL에서 path 추출 (도메인 제거)
@@ -157,58 +127,34 @@ export const ShareButtons = ({
       let absoluteImageUrl = '';
       if (mainImageUrl) {
         if (mainImageUrl.startsWith('http')) {
-          // 이미 절대 경로
           absoluteImageUrl = mainImageUrl;
         } else {
-          // 상대 경로면 baseUrl 추가
           const baseUrl = invitationUrl.match(/^https?:\/\/[^/]+/)?.[0] || '';
           absoluteImageUrl = `${baseUrl}${mainImageUrl}`;
         }
       }
 
-      alert('sendCustom 파라미터 준비 완료');
+      const templateArgs: Record<string, string> = {
+        GROOM_NAME: groomName,
+        BRIDE_NAME: brideName,
+        WEDDING_DATE: formattedDateTime,
+        VENUE: venue,
+        INVITATION_PATH: invitationPath,
+      };
 
-      const templateIdNum = parseInt(templateId, 10);
-
-      alert(`전달 파라미터: templateId=${templateIdNum}, INVITATION_PATH=${invitationPath}, IMAGE=${absoluteImageUrl}`);
-
-      // sendCustom 방식 사용 - 카카오 개발자 콘솔에서 만든 템플릿 사용
-      try {
-        alert('sendCustom 호출 직전');
-
-        // 구버전 SDK는 콜백을 지원하지 않을 수 있으므로 콜백 없이 호출
-        const templateArgs: Record<string, string> = {
-          GROOM_NAME: groomName,
-          BRIDE_NAME: brideName,
-          WEDDING_DATE: formattedDateTime,
-          VENUE: venue,
-          INVITATION_PATH: invitationPath,
-        };
-
-        // 이미지가 있을 때만 추가 (절대 경로로 변환된 URL 사용)
-        if (absoluteImageUrl) {
-          templateArgs.THUMB = absoluteImageUrl;
-        }
-
-        alert(`최종 전달값: ${JSON.stringify(templateArgs)}`);
-
-        // SDK 2.8.1에서는 success/fail 콜백을 지원하지 않음
-        window.Kakao.Share.sendCustom({
-          templateId: templateIdNum,
-          templateArgs: templateArgs,
-        });
-
-        alert('sendCustom 호출 완료 - 카카오톡 공유 창이 열렸나요?');
-
-        // 트래킹 (공유 창이 열린 것으로 간주)
-        trackShare(invitationId);
-      } catch (err) {
-        const msg = err instanceof Error ? err.message : String(err);
-        alert(`sendCustom 호출 중 에러: ${msg}`);
+      // 이미지가 있을 때만 추가 (절대 경로로 변환된 URL 사용)
+      if (absoluteImageUrl) {
+        templateArgs.THUMB = absoluteImageUrl;
       }
+
+      window.Kakao.Share.sendCustom({
+        templateId: parseInt(templateId, 10),
+        templateArgs: templateArgs,
+      });
+
+      trackShare(invitationId);
     } catch (error) {
       const errorMessage = error instanceof Error ? error.message : '알 수 없는 오류';
-      alert(`카카오톡 공유 실패: ${errorMessage}`);
       addToast('error', `카카오톡 공유 실패: ${errorMessage}`);
     }
   };
