@@ -45,17 +45,23 @@ export const ShareButtons = ({
 
   const handleKakaoShare = () => {
     try {
+      // 버튼 클릭 확인용
+      alert('카카오톡 공유 시작');
+
       if (!window.Kakao) {
+        alert('에러: 카카오 SDK를 찾을 수 없습니다.');
         addToast('error', '카카오 SDK를 찾을 수 없습니다.');
         return;
       }
 
       if (!window.Kakao.isInitialized()) {
+        alert('에러: 카카오 SDK가 초기화되지 않았습니다.');
         addToast('error', '카카오 SDK가 초기화되지 않았습니다.');
         return;
       }
 
       if (!window.Kakao.Share) {
+        alert('에러: 카카오 공유 기능을 사용할 수 없습니다.');
         addToast('error', '카카오 공유 기능을 사용할 수 없습니다.');
         return;
       }
@@ -63,9 +69,12 @@ export const ShareButtons = ({
       const templateId = process.env.NEXT_PUBLIC_KAKAO_TEMPLATE_ID;
 
       if (!templateId) {
+        alert('에러: 카카오 템플릿 ID가 설정되지 않았습니다.');
         addToast('error', '카카오 템플릿 ID가 설정되지 않았습니다.');
         return;
       }
+
+      alert(`템플릿 ID: ${templateId}`);
 
       // 날짜 형식 포맷팅
       const date = new Date(weddingDate);
@@ -97,6 +106,7 @@ export const ShareButtons = ({
       trackShare(invitationId);
     } catch (error) {
       const errorMessage = error instanceof Error ? error.message : '알 수 없는 오류';
+      alert(`카카오톡 공유 실패: ${errorMessage}`);
       addToast('error', `카카오톡 공유 실패: ${errorMessage}`);
     }
   };
