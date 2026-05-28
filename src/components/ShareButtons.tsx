@@ -44,12 +44,15 @@ export const ShareButtons = ({
   }, []);
 
   const handleKakaoShare = () => {
-    // 사용자 제스처를 유지하기 위해 SDK 호출을 최대한 빨리 실행
-    if (!window.Kakao?.isInitialized() || !window.Kakao.Share) return;
+    // 사용자 제스처를 유지하기 위해 early return과 동기 처리
+    if (!window.Kakao || !window.Kakao.isInitialized() || !window.Kakao.Share) {
+      addToast('error', '카카오 SDK를 사용할 수 없습니다.');
+      return;
+    }
 
     const templateId = process.env.NEXT_PUBLIC_KAKAO_TEMPLATE_ID;
 
-    // 날짜 형식 포맷팅 (미리 계산)
+    // 날짜 형식 포맷팅
     const date = new Date(weddingDate);
     const year = date.getFullYear();
     const month = String(date.getMonth() + 1).padStart(2, '0');
@@ -62,63 +65,73 @@ export const ShareButtons = ({
     // 이미지 URL을 절대 경로로 변환
     let absoluteImageUrl = '';
     if (mainImageUrl) {
-      absoluteImageUrl = mainImageUrl.startsWith('http')
-        ? mainImageUrl
-        : `${invitationUrl.match(/^https?:\/\/[^/]+/)?.[0] || ''}${mainImageUrl}`;
+      if (mainImageUrl.startsWith('http')) {
+        absoluteImageUrl = mainImageUrl;
+      } else {
+        const baseUrl = invitationUrl.match(/^https?:\/\/[^/]+/)?.[0] || '';
+        absoluteImageUrl = `${baseUrl}${mainImageUrl}`;
+      }
     }
 
-    try {
-      if (!templateId) {
-        // 템플릿 ID가 없으면 sendDefault 방식 사용
-        const content: {
-          title: string;
-          description: string;
-          imageUrl?: string;
-          link: { mobileWebUrl: string; webUrl: string };
-        } = {
-          title: `${groomName} ❤ ${brideName} 결혼합니다`,
-          description: `${formattedDateTime} | ${venue}`,
-          link: { mobileWebUrl: invitationUrl, webUrl: invitationUrl },
-        };
+    // 템플릿 ID가 없으면 sendDefault 방식 사용
+    if (!templateId) {
+      const content: {
+        title: string;
+        description: string;
+        imageUrl?: string;
+        link: { mobileWebUrl: string; webUrl: string };
+      } = {
+        title: `${groomName} ❤ ${brideName} 결혼합니다`,
+        description: `${formattedDateTime} | ${venue}`,
+        link: {
+          mobileWebUrl: invitationUrl,
+          webUrl: invitationUrl,
+        },
+      };
 
-        if (absoluteImageUrl) content.imageUrl = absoluteImageUrl;
-
-        window.Kakao.Share.sendDefault({
-          objectType: 'feed',
-          content,
-          buttons: [
-            {
-              title: '청첩장 보기',
-              link: { mobileWebUrl: invitationUrl, webUrl: invitationUrl },
-            },
-          ],
-        });
-      } else {
-        // sendCustom 방식 사용
-        const invitationPath = invitationUrl.replace(/^https?:\/\/[^/]+/, '');
-        const templateArgs: Record<string, string> = {
-          GROOM_NAME: groomName,
-          BRIDE_NAME: brideName,
-          WEDDING_DATE: formattedDateTime,
-          VENUE: venue,
-          INVITATION_PATH: invitationPath,
-        };
-
-        // 임시: 이미지 제외하고 테스트 (4002 에러 디버깅용)
-        // if (absoluteImageUrl) templateArgs.THUMB = absoluteImageUrl;
-
-        window.Kakao.Share.sendCustom({
-          templateId: parseInt(templateId, 10),
-          templateArgs,
-        });
+      if (absoluteImageUrl) {
+        content.imageUrl = absoluteImageUrl;
       }
 
-      // 트래킹은 SDK 호출 후 비동기로 처리
-      setTimeout(() => trackShare(invitationId), 0);
-    } catch (error) {
-      const errorMessage = error instanceof Error ? error.message : '알 수 없는 오류';
-      addToast('error', `카카오톡 공유 실패: ${errorMessage}`);
+      window.Kakao.Share.sendDefault({
+        objectType: 'feed',
+        content,
+        buttons: [
+          {
+            title: '청첩장 보기',
+            link: {
+              mobileWebUrl: invitationUrl,
+              webUrl: invitationUrl,
+            },
+          },
+        ],
+      });
+
+      trackShare(invitationId);
+      return;
     }
+
+    // sendCustom 방식 사용
+    const invitationPath = invitationUrl.replace(/^https?:\/\/[^/]+/, '');
+    const templateArgs: Record<string, string> = {
+      GROOM_NAME: groomName,
+      BRIDE_NAME: brideName,
+      WEDDING_DATE: formattedDateTime,
+      VENUE: venue,
+      INVITATION_PATH: invitationPath,
+    };
+
+    // 임시: 이미지 제외하고 테스트 (4002 에러 디버깅용)
+    // if (absoluteImageUrl) {
+    //   templateArgs.THUMB = absoluteImageUrl;
+    // }
+
+    window.Kakao.Share.sendCustom({
+      templateId: parseInt(templateId, 10),
+      templateArgs,
+    });
+
+    trackShare(invitationId);
   };
 
   const handleCopyLink = async () => {
