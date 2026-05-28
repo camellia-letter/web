@@ -49,6 +49,13 @@ export const ShareButtons = ({
       return;
     }
 
+    const templateId = process.env.NEXT_PUBLIC_KAKAO_TEMPLATE_ID;
+
+    if (!templateId) {
+      addToast('error', '카카오 템플릿이 설정되지 않았습니다.');
+      return;
+    }
+
     // 날짜 형식 포맷팅
     const date = new Date(weddingDate);
     const year = date.getFullYear();
@@ -60,30 +67,17 @@ export const ShareButtons = ({
 
     const formattedDateTime = `${year}년 ${month}월 ${day}일 ${weekday} ${hour}시`;
 
-    // 카카오톡 공유 컨텐츠 구성
-    const content = {
-      title: `${groomName} ❤ ${brideName} 결혼합니다`,
-      description: `${formattedDateTime} | ${venue}`,
-      link: {
-        mobileWebUrl: invitationUrl,
-        webUrl: invitationUrl,
+    // sendCustom 방식 사용 - 카카오 개발자 콘솔에서 만든 템플릿 사용
+    window.Kakao.Share.sendCustom({
+      templateId: parseInt(templateId, 10),
+      templateArgs: {
+        GROOM_NAME: groomName,
+        BRIDE_NAME: brideName,
+        WEDDING_DATE: formattedDateTime,
+        VENUE: venue,
+        IMAGE_URL: mainImageUrl || '',
+        INVITATION_URL: invitationUrl,
       },
-      ...(mainImageUrl && { imageUrl: mainImageUrl }),
-    };
-
-    // sendDefault 방식 사용 - 버튼 텍스트 커스터마이징
-    window.Kakao.Share.sendDefault({
-      objectType: 'feed',
-      content,
-      buttons: [
-        {
-          title: '청첩장 보기',
-          link: {
-            mobileWebUrl: invitationUrl,
-            webUrl: invitationUrl,
-          },
-        },
-      ],
     });
 
     trackShare(invitationId);

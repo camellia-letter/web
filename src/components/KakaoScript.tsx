@@ -30,6 +30,10 @@ interface KakaoSDK {
       content: KakaoContent;
       buttons?: KakaoButton[];
     }) => void;
+    sendCustom: (options: {
+      templateId: number;
+      templateArgs?: Record<string, string>;
+    }) => void;
   };
 }
 
