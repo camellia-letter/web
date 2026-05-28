@@ -110,16 +110,24 @@ export const ShareButtons = ({
         alert('sendCustom 호출 직전');
 
         // 구버전 SDK는 콜백을 지원하지 않을 수 있으므로 콜백 없이 호출
+        const templateArgs: Record<string, string> = {
+          GROOM_NAME: groomName,
+          BRIDE_NAME: brideName,
+          WEDDING_DATE: formattedDateTime,
+          VENUE: venue,
+          INVITATION_PATH: invitationPath,
+        };
+
+        // 이미지가 있을 때만 추가
+        if (mainImageUrl) {
+          templateArgs.THUMB = mainImageUrl;
+        }
+
+        alert(`최종 전달값: ${JSON.stringify(templateArgs)}`);
+
         window.Kakao.Share.sendCustom({
           templateId: templateIdNum,
-          templateArgs: {
-            GROOM_NAME: groomName,
-            BRIDE_NAME: brideName,
-            WEDDING_DATE: formattedDateTime,
-            VENUE: venue,
-            THUMB: mainImageUrl || '',
-            INVITATION_PATH: invitationPath,
-          },
+          templateArgs: templateArgs,
         });
 
         alert('sendCustom 호출 직후 - 카카오톡 공유 창이 열렸나요?');
