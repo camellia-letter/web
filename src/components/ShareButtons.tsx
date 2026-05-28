@@ -102,35 +102,30 @@ export const ShareButtons = ({
       alert('sendCustom 파라미터 준비 완료');
 
       const templateIdNum = parseInt(templateId, 10);
-      const shareParams = {
-        templateId: templateIdNum,
-        templateArgs: {
-          GROOM_NAME: groomName,
-          BRIDE_NAME: brideName,
-          WEDDING_DATE: formattedDateTime,
-          VENUE: venue,
-          THUMB: mainImageUrl || '',
-          INVITATION_PATH: invitationPath,
-        },
-      };
 
       alert(`전달 파라미터: templateId=${templateIdNum}, INVITATION_PATH=${invitationPath}`);
 
       // sendCustom 방식 사용 - 카카오 개발자 콘솔에서 만든 템플릿 사용
       try {
         alert('sendCustom 호출 직전');
+
+        // 구버전 SDK는 콜백을 지원하지 않을 수 있으므로 콜백 없이 호출
         window.Kakao.Share.sendCustom({
-          ...shareParams,
-          success: () => {
-            alert('카카오톡 공유 성공!');
-            trackShare(invitationId);
-          },
-          fail: (error) => {
-            alert(`카카오톡 공유 실패: ${error.message}`);
-            addToast('error', `카카오톡 공유 실패: ${error.message}`);
+          templateId: templateIdNum,
+          templateArgs: {
+            GROOM_NAME: groomName,
+            BRIDE_NAME: brideName,
+            WEDDING_DATE: formattedDateTime,
+            VENUE: venue,
+            THUMB: mainImageUrl || '',
+            INVITATION_PATH: invitationPath,
           },
         });
-        alert('sendCustom 호출 직후');
+
+        alert('sendCustom 호출 직후 - 카카오톡 공유 창이 열렸나요?');
+
+        // 일단 성공으로 가정하고 트래킹
+        trackShare(invitationId);
       } catch (err) {
         const msg = err instanceof Error ? err.message : String(err);
         alert(`sendCustom 호출 중 에러: ${msg}`);
