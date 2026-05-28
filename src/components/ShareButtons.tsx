@@ -76,6 +76,15 @@ export const ShareButtons = ({
 
       alert(`템플릿 ID: ${templateId}`);
 
+      // sendCustom 메서드 확인
+      if (typeof window.Kakao.Share.sendCustom !== 'function') {
+        alert('에러: sendCustom 메서드를 찾을 수 없습니다.');
+        alert(`사용 가능한 메서드: ${Object.keys(window.Kakao.Share).join(', ')}`);
+        return;
+      }
+
+      alert('sendCustom 호출 시작');
+
       // 날짜 형식 포맷팅
       const date = new Date(weddingDate);
       const year = date.getFullYear();
@@ -89,6 +98,8 @@ export const ShareButtons = ({
 
       // URL에서 path 추출 (도메인 제거)
       const invitationPath = invitationUrl.replace(/^https?:\/\/[^/]+/, '');
+
+      alert('sendCustom 파라미터 준비 완료');
 
       // sendCustom 방식 사용 - 카카오 개발자 콘솔에서 만든 템플릿 사용
       window.Kakao.Share.sendCustom({
