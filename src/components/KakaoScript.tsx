@@ -13,7 +13,7 @@ interface KakaoButton {
 interface KakaoContent {
   title: string;
   description: string;
-  imageUrl: string;
+  imageUrl?: string;
   link: {
     mobileWebUrl: string;
     webUrl: string;

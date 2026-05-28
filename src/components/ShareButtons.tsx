@@ -60,18 +60,21 @@ export const ShareButtons = ({
 
     const formattedDateTime = `${year}년 ${month}월 ${day}일 ${weekday} ${hour}시`;
 
+    // 카카오톡 공유 컨텐츠 구성
+    const content = {
+      title: `${groomName} ❤ ${brideName} 결혼합니다`,
+      description: `${formattedDateTime}\n${venue}`,
+      link: {
+        mobileWebUrl: invitationUrl,
+        webUrl: invitationUrl,
+      },
+      ...(mainImageUrl && { imageUrl: mainImageUrl }),
+    };
+
     // sendDefault 방식 사용 - 버튼 텍스트 커스터마이징
     window.Kakao.Share.sendDefault({
       objectType: 'feed',
-      content: {
-        title: `${groomName} ❤ ${brideName} 결혼합니다`,
-        description: `${formattedDateTime}\n${venue}`,
-        imageUrl: mainImageUrl || 'https://www.camellialetter.art/og-image.png',
-        link: {
-          mobileWebUrl: invitationUrl,
-          webUrl: invitationUrl,
-        },
-      },
+      content,
       buttons: [
         {
           title: '청첩장 보기',
