@@ -49,12 +49,23 @@ export const ShareButtons = ({
       return;
     }
 
+    // 날짜 형식 포맷팅
+    const date = new Date(weddingDate);
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const day = String(date.getDate()).padStart(2, '0');
+    const weekdays = ['일요일', '월요일', '화요일', '수요일', '목요일', '금요일', '토요일'];
+    const weekday = weekdays[date.getDay()];
+    const hour = date.getHours();
+
+    const formattedDateTime = `${year}년 ${month}월 ${day}일 ${weekday} ${hour}시`;
+
     // sendDefault 방식 사용 - 버튼 텍스트 커스터마이징
     window.Kakao.Share.sendDefault({
       objectType: 'feed',
       content: {
         title: `${groomName} ❤ ${brideName} 결혼합니다`,
-        description: `${weddingDate} | ${venue}`,
+        description: `${formattedDateTime}\n${venue}`,
         imageUrl: mainImageUrl || 'https://www.camellialetter.art/og-image.png',
         link: {
           mobileWebUrl: invitationUrl,
