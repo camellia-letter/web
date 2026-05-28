@@ -63,7 +63,7 @@ export const ShareButtons = ({
     // 카카오톡 공유 컨텐츠 구성
     const content = {
       title: `${groomName} ❤ ${brideName} 결혼합니다`,
-      description: `${formattedDateTime}\n${venue}`,
+      description: `${formattedDateTime} | ${venue}`,
       link: {
         mobileWebUrl: invitationUrl,
         webUrl: invitationUrl,
