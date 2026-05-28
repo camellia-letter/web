@@ -43,7 +43,7 @@ const nextConfig = {
               "style-src 'self' 'unsafe-inline'",
               "font-src 'self'",
               "img-src 'self' data: https:",
-              "connect-src 'self' " + (process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4002'),
+              "connect-src 'self' https://kapi.kakao.com https://*.kakao.com " + (process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4002'),
             ].join('; '),
           },
           {
