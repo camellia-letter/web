@@ -99,11 +99,24 @@ export const ShareButtons = ({
       // URL에서 path 추출 (도메인 제거)
       const invitationPath = invitationUrl.replace(/^https?:\/\/[^/]+/, '');
 
+      // 이미지 URL을 절대 경로로 변환 (모바일 카카오톡은 절대 경로만 허용)
+      let absoluteImageUrl = '';
+      if (mainImageUrl) {
+        if (mainImageUrl.startsWith('http')) {
+          // 이미 절대 경로
+          absoluteImageUrl = mainImageUrl;
+        } else {
+          // 상대 경로면 baseUrl 추가
+          const baseUrl = invitationUrl.match(/^https?:\/\/[^/]+/)?.[0] || '';
+          absoluteImageUrl = `${baseUrl}${mainImageUrl}`;
+        }
+      }
+
       alert('sendCustom 파라미터 준비 완료');
 
       const templateIdNum = parseInt(templateId, 10);
 
-      alert(`전달 파라미터: templateId=${templateIdNum}, INVITATION_PATH=${invitationPath}`);
+      alert(`전달 파라미터: templateId=${templateIdNum}, INVITATION_PATH=${invitationPath}, IMAGE=${absoluteImageUrl}`);
 
       // sendCustom 방식 사용 - 카카오 개발자 콘솔에서 만든 템플릿 사용
       try {
@@ -118,9 +131,9 @@ export const ShareButtons = ({
           INVITATION_PATH: invitationPath,
         };
 
-        // 이미지가 있을 때만 추가
-        if (mainImageUrl) {
-          templateArgs.THUMB = mainImageUrl;
+        // 이미지가 있을 때만 추가 (절대 경로로 변환된 URL 사용)
+        if (absoluteImageUrl) {
+          templateArgs.THUMB = absoluteImageUrl;
         }
 
         alert(`최종 전달값: ${JSON.stringify(templateArgs)}`);
