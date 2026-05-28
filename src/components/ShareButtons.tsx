@@ -138,20 +138,16 @@ export const ShareButtons = ({
 
         alert(`최종 전달값: ${JSON.stringify(templateArgs)}`);
 
+        // SDK 2.8.1에서는 success/fail 콜백을 지원하지 않음
         window.Kakao.Share.sendCustom({
           templateId: templateIdNum,
           templateArgs: templateArgs,
-          success: () => {
-            alert('카카오톡 공유 성공!');
-            trackShare(invitationId);
-          },
-          fail: (error) => {
-            alert(`카카오톡 공유 실패: ${JSON.stringify(error)}`);
-            addToast('error', `카카오톡 공유 실패: ${error.message || '알 수 없는 오류'}`);
-          },
         });
 
-        alert('sendCustom 호출 직후');
+        alert('sendCustom 호출 완료 - 카카오톡 공유 창이 열렸나요?');
+
+        // 트래킹 (공유 창이 열린 것으로 간주)
+        trackShare(invitationId);
       } catch (err) {
         const msg = err instanceof Error ? err.message : String(err);
         alert(`sendCustom 호출 중 에러: ${msg}`);

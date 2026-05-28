@@ -33,8 +33,6 @@ interface KakaoSDK {
     sendCustom: (options: {
       templateId: number;
       templateArgs?: Record<string, string>;
-      success?: () => void;
-      fail?: (error: Error) => void;
     }) => void;
   };
 }
