@@ -1,10 +1,10 @@
 'use client';
 
-import { useEffect, useState } from "react";
-import { Button, Stack } from "@mantine/core";
-import { IconCopy, IconMessageCircle } from "@tabler/icons-react";
-import { trackShare } from "@/lib/api";
-import { useToast } from "@/components/ui/Toast";
+import { useEffect, useState } from 'react';
+import { Button, Stack } from '@mantine/core';
+import { IconCopy, IconMessageCircle } from '@tabler/icons-react';
+import { trackShare } from '@/lib/api';
+import { useToast } from '@/components/ui/Toast';
 
 interface ShareButtonsProps {
   invitationId: string;
@@ -48,7 +48,6 @@ export const ShareButtons = ({
       addToast('error', '카카오 SDK가 로드되지 않았습니다.');
       return;
     }
-
     const templateId = process.env.NEXT_PUBLIC_KAKAO_TEMPLATE_ID;
 
     if (!templateId) {
@@ -78,7 +77,7 @@ export const ShareButtons = ({
         BRIDE_NAME: brideName,
         WEDDING_DATE: formattedDateTime,
         VENUE: venue,
-        IMAGE_URL: mainImageUrl || '',
+        THUMB: mainImageUrl || '',
         INVITATION_PATH: invitationPath,
       },
     });
