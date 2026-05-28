@@ -67,6 +67,9 @@ export const ShareButtons = ({
 
     const formattedDateTime = `${year}년 ${month}월 ${day}일 ${weekday} ${hour}시`;
 
+    // URL에서 path 추출 (도메인 제거)
+    const invitationPath = invitationUrl.replace(/^https?:\/\/[^/]+/, '');
+
     // sendCustom 방식 사용 - 카카오 개발자 콘솔에서 만든 템플릿 사용
     window.Kakao.Share.sendCustom({
       templateId: parseInt(templateId, 10),
@@ -76,7 +79,7 @@ export const ShareButtons = ({
         WEDDING_DATE: formattedDateTime,
         VENUE: venue,
         IMAGE_URL: mainImageUrl || '',
-        INVITATION_URL: invitationUrl,
+        INVITATION_PATH: invitationPath,
       },
     });
 
