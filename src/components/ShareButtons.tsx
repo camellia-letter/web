@@ -44,45 +44,61 @@ export const ShareButtons = ({
   }, []);
 
   const handleKakaoShare = () => {
-    if (!window.Kakao || !window.Kakao.isInitialized() || !window.Kakao.Share) {
-      addToast('error', '카카오 SDK가 로드되지 않았습니다.');
-      return;
+    try {
+      if (!window.Kakao) {
+        addToast('error', '카카오 SDK를 찾을 수 없습니다.');
+        return;
+      }
+
+      if (!window.Kakao.isInitialized()) {
+        addToast('error', '카카오 SDK가 초기화되지 않았습니다.');
+        return;
+      }
+
+      if (!window.Kakao.Share) {
+        addToast('error', '카카오 공유 기능을 사용할 수 없습니다.');
+        return;
+      }
+
+      const templateId = process.env.NEXT_PUBLIC_KAKAO_TEMPLATE_ID;
+
+      if (!templateId) {
+        addToast('error', '카카오 템플릿 ID가 설정되지 않았습니다.');
+        return;
+      }
+
+      // 날짜 형식 포맷팅
+      const date = new Date(weddingDate);
+      const year = date.getFullYear();
+      const month = String(date.getMonth() + 1).padStart(2, '0');
+      const day = String(date.getDate()).padStart(2, '0');
+      const weekdays = ['일요일', '월요일', '화요일', '수요일', '목요일', '금요일', '토요일'];
+      const weekday = weekdays[date.getDay()];
+      const hour = date.getHours();
+
+      const formattedDateTime = `${year}년 ${month}월 ${day}일 ${weekday} ${hour}시`;
+
+      // URL에서 path 추출 (도메인 제거)
+      const invitationPath = invitationUrl.replace(/^https?:\/\/[^/]+/, '');
+
+      // sendCustom 방식 사용 - 카카오 개발자 콘솔에서 만든 템플릿 사용
+      window.Kakao.Share.sendCustom({
+        templateId: parseInt(templateId, 10),
+        templateArgs: {
+          GROOM_NAME: groomName,
+          BRIDE_NAME: brideName,
+          WEDDING_DATE: formattedDateTime,
+          VENUE: venue,
+          THUMB: mainImageUrl || '',
+          INVITATION_PATH: invitationPath,
+        },
+      });
+
+      trackShare(invitationId);
+    } catch (error) {
+      const errorMessage = error instanceof Error ? error.message : '알 수 없는 오류';
+      addToast('error', `카카오톡 공유 실패: ${errorMessage}`);
     }
-    const templateId = process.env.NEXT_PUBLIC_KAKAO_TEMPLATE_ID;
-
-    if (!templateId) {
-      addToast('error', '카카오 템플릿이 설정되지 않았습니다.');
-      return;
-    }
-
-    // 날짜 형식 포맷팅
-    const date = new Date(weddingDate);
-    const year = date.getFullYear();
-    const month = String(date.getMonth() + 1).padStart(2, '0');
-    const day = String(date.getDate()).padStart(2, '0');
-    const weekdays = ['일요일', '월요일', '화요일', '수요일', '목요일', '금요일', '토요일'];
-    const weekday = weekdays[date.getDay()];
-    const hour = date.getHours();
-
-    const formattedDateTime = `${year}년 ${month}월 ${day}일 ${weekday} ${hour}시`;
-
-    // URL에서 path 추출 (도메인 제거)
-    const invitationPath = invitationUrl.replace(/^https?:\/\/[^/]+/, '');
-
-    // sendCustom 방식 사용 - 카카오 개발자 콘솔에서 만든 템플릿 사용
-    window.Kakao.Share.sendCustom({
-      templateId: parseInt(templateId, 10),
-      templateArgs: {
-        GROOM_NAME: groomName,
-        BRIDE_NAME: brideName,
-        WEDDING_DATE: formattedDateTime,
-        VENUE: venue,
-        THUMB: mainImageUrl || '',
-        INVITATION_PATH: invitationPath,
-      },
-    });
-
-    trackShare(invitationId);
   };
 
   const handleCopyLink = async () => {
