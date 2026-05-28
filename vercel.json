@@ -1,4 +1,4 @@
 {
   "framework": "nextjs",
-  "installCommand": "echo '@camellia-letter:registry=https://npm.pkg.github.com' > .npmrc && echo '//npm.pkg.github.com/:_authToken='$NPM_TOKEN >> .npmrc && npm install"
+  "installCommand": "bash setup-npmrc.sh && npm install"
 }
