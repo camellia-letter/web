@@ -53,10 +53,8 @@ export const KakaoScript = () => {
 
   return (
     <Script
-      src="https://t1.kakaocdn.net/kakao_js_sdk/2.6.0/kakao.min.js"
-      integrity="sha384-6MFdIr0zOira1CHQkedUqJVql0YtcZA1P0nbPrQYJXVJZUkTk/oX4U9GhUIs3/z8"
-      crossOrigin="anonymous"
-      strategy="afterInteractive" // 페이지 로드 후 비동기로 로드 (성능 최적화)
+      src="https://developers.kakao.com/sdk/js/kakao.js"
+      strategy="afterInteractive"
       onLoad={handleLoad}
     />
   );
