@@ -141,12 +141,17 @@ export const ShareButtons = ({
         window.Kakao.Share.sendCustom({
           templateId: templateIdNum,
           templateArgs: templateArgs,
+          success: () => {
+            alert('카카오톡 공유 성공!');
+            trackShare(invitationId);
+          },
+          fail: (error) => {
+            alert(`카카오톡 공유 실패: ${JSON.stringify(error)}`);
+            addToast('error', `카카오톡 공유 실패: ${error.message || '알 수 없는 오류'}`);
+          },
         });
 
-        alert('sendCustom 호출 직후 - 카카오톡 공유 창이 열렸나요?');
-
-        // 일단 성공으로 가정하고 트래킹
-        trackShare(invitationId);
+        alert('sendCustom 호출 직후');
       } catch (err) {
         const msg = err instanceof Error ? err.message : String(err);
         alert(`sendCustom 호출 중 에러: ${msg}`);
