@@ -2,11 +2,34 @@
 
 import Script from "next/script";
 
+interface KakaoButton {
+  title: string;
+  link: {
+    mobileWebUrl: string;
+    webUrl: string;
+  };
+}
+
+interface KakaoContent {
+  title: string;
+  description: string;
+  imageUrl: string;
+  link: {
+    mobileWebUrl: string;
+    webUrl: string;
+  };
+}
+
 interface KakaoSDK {
   init: (appKey: string) => void;
   isInitialized: () => boolean;
   Share?: {
     sendScrap: (options: { requestUrl: string }) => void;
+    sendDefault: (options: {
+      objectType: 'feed';
+      content: KakaoContent;
+      buttons?: KakaoButton[];
+    }) => void;
   };
 }
 

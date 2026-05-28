@@ -27,6 +27,7 @@ describe('ShareButtons', () => {
     brideName: '김영희',
     weddingDate: '2026-03-15',
     venue: '서울 웨딩홀',
+    venueAddress: '서울특별시 강남구',
     invitationUrl: 'https://example.com/wedding/1',
   };
 

@@ -19,13 +19,13 @@ interface ShareButtonsProps {
 
 export const ShareButtons = ({
   invitationId,
-  groomName: _groomName,
-  brideName: _brideName,
-  weddingDate: _weddingDate,
-  venue: _venue,
+  groomName,
+  brideName,
+  weddingDate,
+  venue,
   venueAddress: _venueAddress,
   invitationUrl,
-  mainImageUrl: _mainImageUrl,
+  mainImageUrl,
 }: ShareButtonsProps) => {
   const [isKakaoReady, setIsKakaoReady] = useState(false);
   const { addToast } = useToast();
@@ -49,9 +49,27 @@ export const ShareButtons = ({
       return;
     }
 
-    // sendScrap 방식 사용 - OG 태그를 크롤링하여 자동으로 생성
-    window.Kakao.Share.sendScrap({
-      requestUrl: invitationUrl,
+    // sendDefault 방식 사용 - 버튼 텍스트 커스터마이징
+    window.Kakao.Share.sendDefault({
+      objectType: 'feed',
+      content: {
+        title: `${groomName} ❤ ${brideName} 결혼합니다`,
+        description: `${weddingDate} | ${venue}`,
+        imageUrl: mainImageUrl || 'https://www.camellialetter.art/og-image.png',
+        link: {
+          mobileWebUrl: invitationUrl,
+          webUrl: invitationUrl,
+        },
+      },
+      buttons: [
+        {
+          title: '청첩장 보기',
+          link: {
+            mobileWebUrl: invitationUrl,
+            webUrl: invitationUrl,
+          },
+        },
+      ],
     });
 
     trackShare(invitationId);
