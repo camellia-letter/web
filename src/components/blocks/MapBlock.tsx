@@ -63,14 +63,14 @@ export const MapBlock = ({ venue, venueAddress, venueLat, venueLng }: MapBlockPr
                 </Button>
                 <Button
                   component="a"
-                  href={`https://map.naver.com/v5/directions/-/${encodeURIComponent(venue)},${venueLng},${venueLat},-/transit`}
+                  href={`https://map.naver.com/v5/search/${encodeURIComponent(venue)}?c=${venueLng},${venueLat},15,0,0,0,dh`}
                   target="_blank"
                   rel="noopener noreferrer"
                   radius="md"
                   variant="outline"
                   style={{ borderColor: colors.primary, color: colors.primary }}
                 >
-                  네이버 길찾기
+                  네이버 지도
                 </Button>
               </Flex>
             )}
