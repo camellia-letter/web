@@ -13,7 +13,7 @@ interface NaverMapProps {
   style?: React.CSSProperties;
 }
 
-export const NaverMap = ({ lat, lng, venue, level = 17, className, style }: NaverMapProps) => {
+export const NaverMap = ({ lat, lng, venue, level = 16, className, style }: NaverMapProps) => {
   const mapRef = useRef<HTMLDivElement>(null);
   const [isLoaded, setIsLoaded] = useState(false);
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
