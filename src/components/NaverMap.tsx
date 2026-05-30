@@ -18,6 +18,8 @@ export const NaverMap = ({ lat, lng, venue, level = 15, className, style }: Nave
   const [isLoaded, setIsLoaded] = useState(false);
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [, setMap] = useState<any>(null);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const markerRef = useRef<any>(null);
 
   useEffect(() => {
     if (!isLoaded || !mapRef.current || !window.naver?.maps) return;
@@ -33,15 +35,14 @@ export const NaverMap = ({ lat, lng, venue, level = 15, className, style }: Nave
       position,
       map: mapInstance,
     });
-
-    const infowindow = new window.naver.maps.InfoWindow({
-      content: `<div style="padding:8px 12px;font-size:14px;white-space:nowrap;font-weight:500;">${venue}</div>`,
-    });
-    infowindow.open(mapInstance, marker);
+    markerRef.current = marker;
 
     setMap(mapInstance);
 
     return () => {
+      if (markerRef.current) {
+        markerRef.current.setMap(null);
+      }
       setMap(null);
     };
   }, [isLoaded, lat, lng, venue, level]);
