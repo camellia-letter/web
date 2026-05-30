@@ -29,6 +29,7 @@ export const HeroBlock = ({ data }: HeroBlockProps) => {
           width: '425px',
           maxWidth: '100%',
           backgroundColor: colors.background,
+          touchAction: 'pan-y',
         }}
       >
         <Box
@@ -38,6 +39,7 @@ export const HeroBlock = ({ data }: HeroBlockProps) => {
             justifyContent: 'center',
             alignItems: 'center',
             overflow: 'hidden',
+            touchAction: 'pan-y',
           }}
         >
           <img
@@ -50,6 +52,7 @@ export const HeroBlock = ({ data }: HeroBlockProps) => {
               display: 'block',
               pointerEvents: 'none',
               userSelect: 'none',
+              touchAction: 'none',
             }}
             draggable={false}
           />
