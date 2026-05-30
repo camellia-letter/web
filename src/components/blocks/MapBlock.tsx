@@ -3,7 +3,7 @@
 import { Anchor, Button, Container, Flex, Paper, Stack, Text, Title } from "@mantine/core";
 import { useTheme } from "@/contexts/ThemeContext";
 import { withAlpha } from "@/lib/themeUtils";
-import { KakaoMap } from "@/components/KakaoMap";
+import { NaverMap } from "@/components/NaverMap";
 
 interface MapBlockProps {
   venue: string;
@@ -27,7 +27,7 @@ export const MapBlock = ({ venue, venueAddress, venueLat, venueLng }: MapBlockPr
           style={{ overflow: 'hidden', borderRadius: `calc(${borderRadius} * 2)` }}
         >
           {venueLat && venueLng && (
-            <KakaoMap lat={venueLat} lng={venueLng} venue={venue} style={{ height: '200px' }} />
+            <NaverMap lat={venueLat} lng={venueLng} venue={venue} style={{ height: '200px' }} />
           )}
 
           <Stack gap="md" p="xl" align="center">
@@ -59,7 +59,7 @@ export const MapBlock = ({ venue, venueAddress, venueLat, venueLng }: MapBlockPr
                   radius="md"
                   style={{ backgroundColor: colors.primary }}
                 >
-                  길찾기
+                  카카오 길찾기
                 </Button>
                 <Button
                   component="a"
