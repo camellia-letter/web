@@ -183,6 +183,7 @@ export interface MapBlockData {
   lng?: number;
   venue?: string;
   venueAddress?: string;
+  destinationName?: string; // 길찾기 도착지명 (미설정 시 venue 사용)
 }
 
 // Guestbook 블록 데이터 타입

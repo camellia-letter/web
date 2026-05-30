@@ -10,10 +10,12 @@ interface MapBlockProps {
   venueAddress: string;
   venueLat?: number | null;
   venueLng?: number | null;
+  destinationName?: string;
 }
 
-export const MapBlock = ({ venue, venueAddress, venueLat, venueLng }: MapBlockProps) => {
+export const MapBlock = ({ venue, venueAddress, venueLat, venueLng, destinationName }: MapBlockProps) => {
   const { colors, fontFamily, borderRadius } = useTheme();
+  const destinationForMap = destinationName || venue;
 
   return (
     <Container size="sm" py={48}>
@@ -53,7 +55,7 @@ export const MapBlock = ({ venue, venueAddress, venueLat, venueLng }: MapBlockPr
               >
                 <Button
                   component="a"
-                  href={`https://map.kakao.com/link/to/${venue},${venueLat},${venueLng}`}
+                  href={`https://map.kakao.com/link/to/${destinationForMap},${venueLat},${venueLng}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   radius="md"
@@ -63,7 +65,7 @@ export const MapBlock = ({ venue, venueAddress, venueLat, venueLng }: MapBlockPr
                 </Button>
                 <Button
                   component="a"
-                  href={`https://map.naver.com/v5/search/${encodeURIComponent(venue)}?c=${venueLng},${venueLat},15,0,0,0,dh`}
+                  href={`https://map.naver.com/v5/search/${encodeURIComponent(destinationForMap)}?c=${venueLng},${venueLat},15,0,0,0,dh`}
                   target="_blank"
                   rel="noopener noreferrer"
                   radius="md"

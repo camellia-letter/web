@@ -152,6 +152,7 @@ export const BlockRenderer = ({ blocks, invitation }: BlockRendererProps) => {
               venueAddress={invitation.venueAddress}
               venueLat={invitation.venueLat}
               venueLng={invitation.venueLng}
+              destinationName={block.data.destinationName}
             />
           );
 
