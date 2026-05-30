@@ -48,7 +48,10 @@ export const HeroBlock = ({ data }: HeroBlockProps) => {
               height: 'auto',
               objectFit: 'contain',
               display: 'block',
+              pointerEvents: 'none',
+              userSelect: 'none',
             }}
+            draggable={false}
           />
         </Box>
       </Paper>
