@@ -55,7 +55,7 @@ export const MapBlock = ({ venue, venueAddress, venueLat, venueLng, destinationN
               >
                 <Button
                   component="a"
-                  href={`https://map.kakao.com/link/to/${encodeURIComponent(destinationForMap)},${venueLat},${venueLng}`}
+                  href={`https://map.kakao.com/?q=${encodeURIComponent(destinationForMap)}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   radius="md"
