@@ -1,6 +1,6 @@
 'use client';
 
-import Script from "next/script";
+import Script from 'next/script';
 
 interface NaverMapsSDK {
   maps: {
@@ -32,7 +32,7 @@ export const NaverMapScript = ({ onLoad }: NaverMapScriptProps) => {
 
   return (
     <Script
-      src={`https://oapi.map.naver.com/openapi/v3/maps.js?ncpClientId=${process.env.NEXT_PUBLIC_NAVER_MAP_CLIENT_ID}`}
+      src={`https://oapi.map.naver.com/openapi/v3/maps.js?ncpKeyId=${process.env.NEXT_PUBLIC_NAVER_MAP_CLIENT_ID}`}
       onLoad={handleLoad}
       strategy="lazyOnload"
     />

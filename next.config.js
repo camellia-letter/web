@@ -39,11 +39,11 @@ const nextConfig = {
             key: 'Content-Security-Policy',
             value: [
               "default-src 'self'",
-              "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://t1.kakaocdn.net https://developers.kakao.com https://oapi.map.naver.com https://*.pstatic.net",
+              "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://t1.kakaocdn.net https://developers.kakao.com http://oapi.map.naver.com https://oapi.map.naver.com https://*.pstatic.net http://*.map.naver.net https://*.map.naver.net",
               "style-src 'self' 'unsafe-inline'",
               "font-src 'self'",
-              "img-src 'self' data: https:",
-              "connect-src 'self' https://kapi.kakao.com https://*.kakao.com https://oapi.map.naver.com https://naveropenapi.apigw.ntruss.com https://*.navercorp.com https://*.pstatic.net " + (process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4002'),
+              "img-src 'self' data: https: http: blob:",
+              "connect-src 'self' https://kapi.kakao.com https://*.kakao.com http://oapi.map.naver.com https://oapi.map.naver.com https://naveropenapi.apigw.ntruss.com https://*.navercorp.com https://*.pstatic.net http://*.map.naver.net https://*.map.naver.net " + (process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4002'),
             ].join('; '),
           },
           {
