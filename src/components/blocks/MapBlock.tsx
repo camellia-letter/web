@@ -63,7 +63,7 @@ export const MapBlock = ({ venue, venueAddress, venueLat, venueLng }: MapBlockPr
                 </Button>
                 <Button
                   component="a"
-                  href={`https://map.naver.com/v5/directions/-/-/-/transit?c=${venueLng},${venueLat},15,0,0,0,dh`}
+                  href={`https://map.naver.com/v5/directions/-/${encodeURIComponent(venue)},${venueLng},${venueLat},-/transit`}
                   target="_blank"
                   rel="noopener noreferrer"
                   radius="md"
