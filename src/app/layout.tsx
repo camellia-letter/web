@@ -24,6 +24,7 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => {
       className={`${maruBuri.variable} ${notoSans.variable} ${notoSerif.variable} ${gowunBatang.variable} ${nanumMyeongjo.variable}`}
     >
       <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
         <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
         <ColorSchemeScript />
       </head>
