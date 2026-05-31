@@ -1,0 +1,4 @@
+{
+  "framework": "nextjs",
+  "installCommand": "bash setup-npmrc.sh && npm install"
+}
