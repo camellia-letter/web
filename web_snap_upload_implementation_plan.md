@@ -50,6 +50,20 @@
 - [x] types 패키지 빌드 성공
 - [x] 모든 타입 정의 완료
 
+### 4. 패키지 버전 관리
+
+**types 패키지 (shared-types):**
+- 버전: 1.0.4 → 1.1.0
+- 저장소: https://github.com/camellia-letter/shared-types.git
+- 커밋:
+  - `Feature(types): SNAP_UPLOAD 블록 타입 추가`
+  - `Chore(release): 버전 1.1.0으로 업데이트`
+- 푸시 완료 ✓
+
+**web 패키지:**
+- shared-types 의존성: ^1.0.4 → ^1.1.0
+- 커밋: `Chore(deps): shared-types 버전 1.1.0으로 업데이트`
+
 ---
 
 ## 1. 개요
