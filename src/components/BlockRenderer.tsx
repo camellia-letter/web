@@ -81,6 +81,14 @@ const ParentsBlock = dynamic(
   },
 );
 
+const SnapUploadBlock = dynamic(
+  () => import('@/components/blocks/SnapUploadBlock').then((mod) => mod.SnapUploadBlock),
+  {
+    loading: () => <BlockSkeleton />,
+    ssr: false, // Uses client-side API calls and file upload
+  },
+);
+
 interface BlockRendererProps {
   blocks: InvitationBlock[];
   invitation: Invitation;
@@ -181,6 +189,9 @@ export const BlockRenderer = ({ blocks, invitation }: BlockRendererProps) => {
 
         case 'RSVP':
           return <RsvpBlock invitationId={invitation.id} data={block.data} />;
+
+        case 'SNAP_UPLOAD':
+          return <SnapUploadBlock data={{ invitationId: invitation.id }} />;
 
         default: {
           // eslint-disable-next-line @typescript-eslint/no-unused-vars
