@@ -41,7 +41,7 @@ export const SnapUploadModal = ({
   return (
     <Modal
       opened={opened}
-      onClose={isUploading ? undefined : onClose} // 업로드 중 닫기 방지
+      onClose={isUploading ? () => {} : onClose} // 업로드 중 닫기 방지
       title="사진 올리기"
       centered
       size="lg"

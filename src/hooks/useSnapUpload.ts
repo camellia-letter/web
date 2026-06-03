@@ -45,7 +45,11 @@ export const useSnapUpload = (invitationId: string) => {
           return false;
         }
 
-        if (!SNAP_CONSTANTS.ALLOWED_MIME_TYPES.includes(file.type)) {
+        if (
+          !SNAP_CONSTANTS.ALLOWED_MIME_TYPES.includes(
+            file.type as (typeof SNAP_CONSTANTS.ALLOWED_MIME_TYPES)[number],
+          )
+        ) {
           addToast('warning', '지원하지 않는 파일 형식이에요.');
           return false;
         }

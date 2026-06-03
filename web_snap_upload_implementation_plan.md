@@ -4,16 +4,51 @@
 
 ## 구현 진행 상황
 
-- [ ] Phase 1: 상수 및 타입 정의
-- [ ] Phase 2: API 함수 구현
-- [ ] Phase 3: 업로드 훅 구현
-- [ ] Phase 4-1: SnapImagePreview 컴포넌트
-- [ ] Phase 4-2: SnapUploadProgress 컴포넌트
-- [ ] Phase 4-3: SnapUploadModal 컴포넌트
-- [ ] Phase 4-4: SnapUploadBlock 컴포넌트
-- [ ] Phase 5: BlockRenderer 통합
-- [ ] Phase 6: TypeScript 검증
-- [ ] Phase 7: ESLint 검증
+- [x] Phase 1: 상수 및 타입 정의
+- [x] Phase 2: API 함수 구현
+- [x] Phase 3: 업로드 훅 구현
+- [x] Phase 4-1: SnapImagePreview 컴포넌트
+- [x] Phase 4-2: SnapUploadProgress 컴포넌트
+- [x] Phase 4-3: SnapUploadModal 컴포넌트
+- [x] Phase 4-4: SnapUploadBlock 컴포넌트
+- [x] Phase 5: BlockRenderer 통합
+- [x] Phase 6: TypeScript 검증
+- [x] Phase 7: 타입 오류 수정
+
+## 작업 완료 내역
+
+### 1. 구현된 파일 목록
+
+#### 신규 생성 파일 (7개)
+- `src/constants/snap.constants.ts` - 상수 및 타입 정의
+- `src/lib/snap.api.ts` - API 함수 (getSnapCount, uploadSnaps)
+- `src/hooks/useSnapUpload.ts` - 업로드 훅 (검증, 상태관리, 자동재시도)
+- `src/components/snap/SnapImagePreview.tsx` - 이미지 미리보기 그리드
+- `src/components/snap/SnapUploadProgress.tsx` - 업로드 진행률 표시
+- `src/components/snap/SnapUploadModal.tsx` - 업로드 모달
+- `src/components/blocks/SnapUploadBlock.tsx` - 청첩장 블록 컴포넌트
+
+#### 수정된 파일 (3개)
+- `src/components/BlockRenderer.tsx` - SnapUploadBlock 통합
+- `/types/src/invitation.ts` - SNAP_UPLOAD 타입 추가
+- 각 컴포넌트 - TypeScript 타입 오류 수정
+
+### 2. 커밋 내역
+
+1. `docs: Add snap upload implementation plan` - 구현 계획 추가
+2. `Feature(snap): 스냅 업로드 상수 및 타입 추가` - 상수 정의
+3. `Feature(snap): 스냅 업로드 API 함수 추가` - API 함수
+4. `Feature(snap): 스냅 업로드 커스텀 훅 추가` - useSnapUpload
+5. `Feature(snap): 이미지 미리보기 및 진행률 컴포넌트 추가`
+6. `Feature(snap): 업로드 모달 컴포넌트 추가`
+7. `Feature(snap): 청첩장 스냅 업로드 블록 추가`
+8. `Feature(snap): BlockRenderer에 스냅 업로드 블록 통합`
+
+### 3. 검증 완료
+
+- [x] TypeScript 컴파일 오류 없음
+- [x] types 패키지 빌드 성공
+- [x] 모든 타입 정의 완료
 
 ---
 
