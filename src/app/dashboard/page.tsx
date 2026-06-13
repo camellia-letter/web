@@ -197,9 +197,11 @@ const DashboardPage = async () => {
   const adminUrl = process.env.NEXT_PUBLIC_ADMIN_URL || 'http://localhost:4001';
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:4000';
 
-  const sessionToken = session.sessionToken;
+  const sessionToken = session?.sessionToken ?? null;
 
-  const adminJwt = sessionToken ? await exchangeSessionForJwt(session.user.id, sessionToken) : null;
+  const adminJwt = sessionToken && session?.user?.id
+    ? await exchangeSessionForJwt(session.user.id, sessionToken)
+    : null;
 
   const invitations = await getInvitations(adminJwt);
 
