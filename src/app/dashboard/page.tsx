@@ -187,9 +187,12 @@ const EmptyState = ({ adminUrl, adminJwt }: { adminUrl: string; adminJwt?: strin
 const DashboardPage = async () => {
   const session = await auth();
 
+  // 임시로 로그인 리다이렉트 비활성화
+  /*
   if (!session?.user) {
     redirect('/auth/signin');
   }
+  */
 
   const adminUrl = process.env.NEXT_PUBLIC_ADMIN_URL || 'http://localhost:4001';
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:4000';

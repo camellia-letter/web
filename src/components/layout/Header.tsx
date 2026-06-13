@@ -32,11 +32,11 @@ export const Header = ({ variant, session }: HeaderProps) => {
                 <Button component={Link} href="/dashboard" variant="subtle" color="gray">
                   대시보드
                 </Button>
-              ) : (
+              ) : null /* 임시로 로그인 버튼 비활성화
                 <Button component={Link} href="/auth/signin" variant="subtle" color="gray">
                   로그인
                 </Button>
-              )}
+              */}
             </Flex>
           ) : user ? (
             <Group gap="md">
