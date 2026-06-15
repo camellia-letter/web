@@ -43,12 +43,15 @@ export const ShareButtons = ({
     return () => clearTimeout(timerId);
   }, []);
 
-  const handleKakaoShare = () => {
+  const handleKakaoShare = async () => {
     // 사용자 제스처를 유지하기 위해 early return과 동기 처리
     if (!window.Kakao || !window.Kakao.isInitialized() || !window.Kakao.Share) {
       addToast('error', '카카오 SDK를 사용할 수 없습니다.');
       return;
     }
+
+    // 공유 추적을 먼저 실행하여 요청 완료 보장
+    await trackShare(invitationId);
 
     const templateId = process.env.NEXT_PUBLIC_KAKAO_TEMPLATE_ID;
 
@@ -107,7 +110,6 @@ export const ShareButtons = ({
         ],
       });
 
-      trackShare(invitationId);
       return;
     }
 
@@ -130,8 +132,6 @@ export const ShareButtons = ({
       templateId: parseInt(templateId, 10),
       templateArgs,
     });
-
-    trackShare(invitationId);
   };
 
   const handleCopyLink = async () => {
@@ -148,7 +148,7 @@ export const ShareButtons = ({
       addToast('success', '링크가 복사되었습니다.');
     }
 
-    trackShare(invitationId);
+    await trackShare(invitationId);
   };
 
   return (
