@@ -23,6 +23,7 @@ export const SNAP_MESSAGES = {
     '스냅 업로드가 마감되었어요.\n함께해주셔서 감사합니다.',
   ERROR_NETWORK: '사진 업로드에 실패했어요.\n잠시 후 다시 시도해 주세요.',
   ERROR_PARTIAL: '일부 사진을 업로드하지 못했어요.',
+  ERROR_UPLOADER_NAME: '이름을 입력해 주세요.',
 } as const;
 
 export interface SnapUploadResponse {
@@ -33,6 +34,7 @@ export interface SnapUploadResponse {
   totalCount?: number;
   isClosed?: boolean;
   message?: string;
+  uploaderName?: string;
 }
 
 export interface SnapCountResponse {

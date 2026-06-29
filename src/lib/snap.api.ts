@@ -30,12 +30,14 @@ export const getSnapCount = async (
 export const uploadSnaps = async (
   invitationId: string,
   files: File[],
+  uploaderName: string,
 ): Promise<SnapUploadResponse | null> => {
   try {
     const formData = new FormData();
     files.forEach((file) => {
       formData.append('files', file);
     });
+    formData.append('uploaderName', uploaderName);
 
     const res = await fetch(
       `${API_URL}/api/snaps/upload?invitationId=${invitationId}`,

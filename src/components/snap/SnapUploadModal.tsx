@@ -1,7 +1,7 @@
 'use client';
 
 import { useRef } from 'react';
-import { Modal, Stack, Button, Text } from '@mantine/core';
+import { Modal, Stack, Button, Text, TextInput } from '@mantine/core';
 import { useTheme } from '@/contexts/ThemeContext';
 import { useSnapUpload } from '@/hooks/useSnapUpload';
 import { SnapImagePreview } from './SnapImagePreview';
@@ -25,6 +25,8 @@ export const SnapUploadModal = ({
     isUploading,
     uploadProgress,
     selectedFiles,
+    uploaderName,
+    setUploaderName,
     handleFileSelect,
     removeFile,
     upload,
@@ -55,6 +57,24 @@ export const SnapUploadModal = ({
       }}
     >
       <Stack gap="md">
+        {/* 이름 입력 */}
+        <TextInput
+          label="이름 / 닉네임"
+          placeholder="예: 홍길동"
+          value={uploaderName}
+          onChange={(e) => setUploaderName(e.currentTarget.value)}
+          disabled={isUploading}
+          required
+          styles={{
+            label: { color: colors.text, fontFamily, marginBottom: 8 },
+            input: {
+              backgroundColor: colors.background,
+              color: colors.text,
+              borderColor: colors.primary,
+            },
+          }}
+        />
+
         {/* 파일 선택 input (숨김) */}
         <input
           ref={fileInputRef}

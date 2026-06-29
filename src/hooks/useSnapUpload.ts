@@ -13,6 +13,7 @@ export const useSnapUpload = (invitationId: string) => {
     total: 0,
   });
   const [selectedFiles, setSelectedFiles] = useState<File[]>([]);
+  const [uploaderName, setUploaderName] = useState('');
 
   // 카운트 조회
   const fetchCount = useCallback(async () => {
@@ -84,13 +85,19 @@ export const useSnapUpload = (invitationId: string) => {
       const files = filesToUpload || selectedFiles;
       if (files.length === 0) return;
 
+      // 업로더 이름 검증
+      if (!uploaderName.trim()) {
+        addToast('warning', SNAP_MESSAGES.ERROR_UPLOADER_NAME);
+        return;
+      }
+
       if (!validateFiles(files)) return;
 
       setIsUploading(true);
       setUploadProgress({ current: 0, total: files.length });
 
       try {
-        const result = await uploadSnaps(invitationId, files);
+        const result = await uploadSnaps(invitationId, files, uploaderName);
 
         if (!result) {
           addToast('error', SNAP_MESSAGES.ERROR_NETWORK);
@@ -134,7 +141,14 @@ export const useSnapUpload = (invitationId: string) => {
         setUploadProgress({ current: 0, total: 0 });
       }
     },
-    [invitationId, selectedFiles, validateFiles, addToast, fetchCount],
+    [
+      invitationId,
+      selectedFiles,
+      uploaderName,
+      validateFiles,
+      addToast,
+      fetchCount,
+    ],
   );
 
   return {
@@ -143,6 +157,8 @@ export const useSnapUpload = (invitationId: string) => {
     isUploading,
     uploadProgress,
     selectedFiles,
+    uploaderName,
+    setUploaderName,
     fetchCount,
     handleFileSelect,
     removeFile,
