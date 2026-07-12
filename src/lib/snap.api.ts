@@ -2,6 +2,7 @@ import type {
   SnapCountResponse,
   SnapUploadResponse,
 } from '@/constants/snap.constants';
+import { logError } from './api';
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4002';
 
@@ -19,7 +20,7 @@ export const getSnapCount = async (
     if (!res.ok) return null;
     return res.json();
   } catch (error) {
-    console.error('Failed to fetch snap count:', error);
+    logError('Failed to fetch snap count', error);
     return null;
   }
 };
@@ -54,7 +55,7 @@ export const uploadSnaps = async (
 
     return res.json();
   } catch (error) {
-    console.error('Failed to upload snaps:', error);
+    logError('Failed to upload snaps', error);
     return { success: false, message: 'Network error' };
   }
 };

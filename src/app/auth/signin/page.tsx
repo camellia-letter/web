@@ -1,8 +1,12 @@
-// 임시로 로그인 페이지 비활성화
-/*
 import { signIn } from "@/auth";
 import { SignInHelpDialog } from "@/components/SignInHelpDialog";
 import { Anchor, Button, Divider, Flex, Paper, Stack, Text, Title } from "@mantine/core";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: '로그인 - Camellia Letter',
+  description: '소셜 계정으로 간편하게 로그인하세요',
+};
 import { IconBrandGoogle } from "@tabler/icons-react";
 import Link from "next/link";
 import Image from "next/image";
@@ -180,11 +184,3 @@ const SignInPage = () => {
 };
 
 export default SignInPage;
-*/
-
-// 로그인 페이지가 임시로 비활성화되었습니다
-import { notFound } from "next/navigation";
-
-export default function SignInPage() {
-  notFound();
-}

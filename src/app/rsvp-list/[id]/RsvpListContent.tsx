@@ -5,6 +5,7 @@ import { Container, Stack, Title, TextInput, Button, Card, Text, Grid, Table } f
 import { IconLock } from "@tabler/icons-react";
 import type { Invitation } from "@camellia-letter/shared-types";
 import { formatDateKR } from "@/lib/dateUtils";
+import { logError } from "@/lib/api";
 
 interface RsvpListContentProps {
   invitation: Invitation;
@@ -77,7 +78,8 @@ export const RsvpListContent = ({ invitation }: RsvpListContentProps) => {
       setRsvps(rsvpData.items || []);
       setStats(statsData);
       setIsAuthenticated(true);
-    } catch {
+    } catch (error) {
+      logError('Failed to verify PIN and fetch RSVP data', error);
       setError('네트워크 오류가 발생했습니다.');
     } finally {
       setIsLoading(false);

@@ -4,6 +4,15 @@ import { useEffect, useRef, useState } from "react";
 import { Flex, Text } from "@mantine/core";
 import { NaverMapScript } from "./NaverMapScript";
 
+interface NaverMapInstance {
+  setCenter: (position: unknown) => void;
+  setZoom: (level: number) => void;
+}
+
+interface NaverMarker {
+  setMap: (map: NaverMapInstance | null) => void;
+}
+
 interface NaverMapProps {
   lat: number;
   lng: number;
@@ -16,10 +25,8 @@ interface NaverMapProps {
 export const NaverMap = ({ lat, lng, venue, level = 16, className, style }: NaverMapProps) => {
   const mapRef = useRef<HTMLDivElement>(null);
   const [isLoaded, setIsLoaded] = useState(false);
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const [, setMap] = useState<any>(null);
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const markerRef = useRef<any>(null);
+  const [, setMap] = useState<NaverMapInstance | null>(null);
+  const markerRef = useRef<NaverMarker | null>(null);
 
   useEffect(() => {
     if (!isLoaded || !mapRef.current || !window.naver?.maps) return;
@@ -35,9 +42,9 @@ export const NaverMap = ({ lat, lng, venue, level = 16, className, style }: Nave
       position,
       map: mapInstance,
     });
-    markerRef.current = marker;
+    markerRef.current = marker as NaverMarker;
 
-    setMap(mapInstance);
+    setMap(mapInstance as NaverMapInstance);
 
     return () => {
       if (markerRef.current) {

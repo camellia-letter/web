@@ -13,11 +13,21 @@ interface KakaoMapProps {
   style?: React.CSSProperties;
 }
 
+interface KakaoMapInstance {
+  setCenter: (position: unknown) => void;
+  setLevel: (level: number) => void;
+}
+
+const escapeHtml = (text: string): string => {
+  const div = document.createElement('div');
+  div.textContent = text;
+  return div.innerHTML;
+};
+
 export const KakaoMap = ({ lat, lng, venue, level = 3, className, style }: KakaoMapProps) => {
   const mapRef = useRef<HTMLDivElement>(null);
   const [isLoaded, setIsLoaded] = useState(false);
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const [, setMap] = useState<any>(null);
+  const [, setMap] = useState<KakaoMapInstance | null>(null);
 
   useEffect(() => {
     if (!isLoaded || !mapRef.current || !window.kakao?.maps) return;
@@ -35,11 +45,11 @@ export const KakaoMap = ({ lat, lng, venue, level = 3, className, style }: Kakao
     });
 
     const infowindow = new window.kakao.maps.InfoWindow({
-      content: `<div style="padding:5px;font-size:12px;white-space:nowrap;">${venue}</div>`,
+      content: `<div style="padding:5px;font-size:12px;white-space:nowrap;">${escapeHtml(venue)}</div>`,
     });
     infowindow.open(mapInstance, marker);
 
-    setMap(mapInstance);
+    setMap(mapInstance as KakaoMapInstance);
 
     return () => {
       setMap(null);

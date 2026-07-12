@@ -2,6 +2,18 @@ import NextAuth from "next-auth";
 import Google from "next-auth/providers/google";
 import Kakao from "next-auth/providers/kakao";
 import Naver from "next-auth/providers/naver";
+import { logError } from "@/lib/api";
+
+interface KakaoProfile {
+  id: number;
+  kakao_account?: {
+    profile?: {
+      nickname?: string;
+      profile_image_url?: string;
+    };
+    email?: string;
+  };
+}
 
 // 환경 변수 검증
 const requiredEnvVars = {
@@ -42,8 +54,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
     Kakao({
       clientId: process.env.KAKAO_CLIENT_ID!,
       clientSecret: process.env.KAKAO_CLIENT_SECRET!,
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      profile(profile: any) {
+      profile(profile: KakaoProfile) {
         const imageUrl = profile.kakao_account?.profile?.profile_image_url;
         return {
           id: String(profile.id),
@@ -80,7 +91,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
 
         return true;
       } catch (error) {
-        console.error('OAuth sign-in error:', error);
+        logError('OAuth sign-in error', error);
         return false;
       }
     },

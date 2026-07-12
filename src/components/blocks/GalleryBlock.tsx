@@ -108,10 +108,10 @@ export const GalleryBlock = ({ data }: GalleryBlockProps) => {
           <Title order={2} size="h3" ta="center" style={{ color: colors.text }}>
             갤러리
           </Title>
-          <SimpleGrid cols={3} spacing="sm">
+          <SimpleGrid cols={{ base: 2, sm: 3 }} spacing="sm">
             {images.map((image, index) => (
               <GalleryImageItem
-                key={index}
+                key={image.url}
                 image={image}
                 index={index}
                 onClick={() => handleImageClick(index)}
@@ -155,7 +155,7 @@ export const GalleryBlock = ({ data }: GalleryBlockProps) => {
             {images.map((image, index) => {
               const isExternalUrl = image.url.startsWith('http');
               return (
-                <Carousel.Slide key={index}>
+                <Carousel.Slide key={image.url}>
                   <Stack gap="md">
                     <Flex justify="center">
                       <div style={{ position: 'relative', width: '100%', height: '70vh' }}>

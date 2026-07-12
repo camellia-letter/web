@@ -1,4 +1,5 @@
 import { Paper, Box } from "@mantine/core";
+import Image from "next/image";
 import { useTheme } from "@/contexts/ThemeContext";
 
 interface HeroBlockProps {
@@ -42,9 +43,11 @@ export const HeroBlock = ({ data }: HeroBlockProps) => {
             touchAction: 'pan-y',
           }}
         >
-          <img
+          <Image
             src={data.imageUrl}
             alt={data.altText || '메인 이미지'}
+            width={1200}
+            height={800}
             style={{
               width: '100%',
               height: 'auto',
@@ -55,6 +58,7 @@ export const HeroBlock = ({ data }: HeroBlockProps) => {
               touchAction: 'none',
             }}
             draggable={false}
+            unoptimized
           />
         </Box>
       </Paper>

@@ -7,7 +7,7 @@ const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4002';
 const isDev = process.env.NODE_ENV === 'development';
 const DEFAULT_TIMEOUT_MS = 10_000;
 
-const logError = (message: string, error: unknown) => {
+export const logError = (message: string, error: unknown) => {
   if (isDev && typeof globalThis.reportError === 'function') {
     globalThis.reportError(error instanceof Error ? error : new Error(message));
   }

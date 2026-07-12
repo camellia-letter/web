@@ -1,6 +1,12 @@
 import { auth } from "@/auth";
 import { redirect } from "next/navigation";
 import Link from "next/link";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: '대시보드 - Camellia Letter',
+  description: '내 청첩장을 관리하고 확인하세요',
+};
 import {
   Alert,
   Button,
