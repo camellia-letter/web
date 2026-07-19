@@ -88,6 +88,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         const data = await response.json();
         user.id = data.userId;
         user.sessionToken = data.sessionToken;
+        user.status = data.status;
 
         return true;
       } catch (error) {
@@ -103,6 +104,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         token.name = user.name;
         token.picture = user.image;
         token.sessionToken = user.sessionToken;
+        token.status = user.status;
       }
       return token;
     },
@@ -113,6 +115,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         session.user.email = token.email as string;
         session.user.name = token.name as string;
         session.user.image = token.picture as string;
+        session.user.status = token.status as string;
         session.sessionToken = token.sessionToken as string;
       }
       return session;

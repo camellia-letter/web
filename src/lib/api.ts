@@ -2,6 +2,7 @@ import { cache } from "react";
 import type { Invitation, InvitationStats } from "@camellia-letter/shared-types";
 import type { GuestBook, CreateGuestBookDto } from "@camellia-letter/shared-types";
 import type { Rsvp, CreateRsvpDto } from "@camellia-letter/shared-types";
+import type { UserStatusInfo } from "@/types/auth.types";
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4002';
 const isDev = process.env.NODE_ENV === 'development';
@@ -286,6 +287,29 @@ export const exchangeSessionForJwt = async (
     return data.accessToken ?? null;
   } catch (error) {
     logError('Failed to exchange session for JWT:', error);
+    return null;
+  }
+};
+
+export const getUserStatus = async (userId: string): Promise<UserStatusInfo | null> => {
+  try {
+    const res = await fetchWithTimeout(`${API_URL}/api/auth/status?userId=${userId}`, {
+      cache: 'no-store',
+    });
+
+    if (!res.ok) {
+      return null;
+    }
+
+    const contentType = res.headers.get('content-type');
+    if (!contentType?.includes('application/json')) {
+      logError('Failed to fetch user status:', new Error(`Expected JSON but got ${contentType}`));
+      return null;
+    }
+
+    return res.json();
+  } catch (error) {
+    logError('Failed to fetch user status:', error);
     return null;
   }
 };

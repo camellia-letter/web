@@ -1,4 +1,5 @@
 import { auth } from "@/auth";
+import { redirect } from "next/navigation";
 import Link from "next/link";
 import type { Metadata } from "next";
 
@@ -20,9 +21,11 @@ import {
   Title,
 } from "@mantine/core";
 import { IconPlus } from "@tabler/icons-react";
-import { getInvitations, exchangeSessionForJwt } from "@/lib/api";
+import { getInvitations, exchangeSessionForJwt, getUserStatus } from "@/lib/api";
 import type { Invitation } from "@camellia-letter/shared-types";
 import { Header } from "@/components/layout/Header";
+import { PendingApprovalScreen } from "@/components/auth/PendingApprovalScreen";
+import { RejectedScreen } from "@/components/auth/RejectedScreen";
 
 const formatDate = (dateString: string) => {
   const date = new Date(dateString);
@@ -192,12 +195,20 @@ const EmptyState = ({ adminUrl, adminJwt }: { adminUrl: string; adminJwt?: strin
 const DashboardPage = async () => {
   const session = await auth();
 
-  // 임시로 로그인 리다이렉트 비활성화
-  /*
   if (!session?.user) {
     redirect('/auth/signin');
   }
-  */
+
+  // 사용자 상태 확인
+  const userStatus = await getUserStatus(session.user.id);
+
+  if (userStatus?.status === 'pending') {
+    return <PendingApprovalScreen />;
+  }
+
+  if (userStatus?.status === 'rejected') {
+    return <RejectedScreen reason={userStatus.rejectionReason} />;
+  }
 
   const adminUrl = process.env.NEXT_PUBLIC_ADMIN_URL || 'http://localhost:4001';
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:4000';
