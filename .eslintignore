@@ -1,0 +1,21 @@
+# Build outputs
+.next
+out
+dist
+build
+packages/dist
+
+# Dependencies
+node_modules
+
+# Auto-generated files
+next-env.d.ts
+*.tsbuildinfo
+
+# Test coverage
+coverage
+.nyc_output
+
+# Environment files
+.env*
+!.env.example

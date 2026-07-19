@@ -170,10 +170,8 @@ export interface InfoBlockData {
   venueAddress?: string;
 }
 
-// Wedding Summary 블록 데이터 타입
-export interface WeddingSummaryBlockData {
-  // 기본 정보에서 자동으로 표시
-}
+// Wedding Summary 블록 데이터 타입 (기본 정보에서 자동으로 표시)
+export type WeddingSummaryBlockData = Record<string, never>;
 
 // Parents 블록 데이터 타입
 export interface ParentsBlockData {

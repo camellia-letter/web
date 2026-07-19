@@ -113,6 +113,8 @@ const MemoizedAnimatedBlock = memo(
   },
 );
 
+MemoizedAnimatedBlock.displayName = 'MemoizedAnimatedBlock';
+
 export const BlockRenderer = ({ blocks, invitation }: BlockRendererProps) => {
   // 메모이제이션: blocks 정렬 (blocks 배열이 변경될 때만 재계산)
   const sortedBlocks = useMemo(() => [...blocks].sort((a, b) => a.order - b.order), [blocks]);

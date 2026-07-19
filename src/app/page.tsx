@@ -1,5 +1,4 @@
 import {
-  Button,
   Card,
   Container,
   Flex,
@@ -24,7 +23,6 @@ import {
   IconRoute,
   IconWallet,
 } from "@tabler/icons-react";
-import Link from "next/link";
 import { auth } from "@/auth";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";

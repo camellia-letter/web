@@ -134,7 +134,7 @@ export const useSnapUpload = (invitationId: string) => {
         // 카운트 갱신
         await fetchCount();
         setSelectedFiles([]);
-      } catch (error) {
+      } catch {
         addToast('error', SNAP_MESSAGES.ERROR_NETWORK);
       } finally {
         setIsUploading(false);

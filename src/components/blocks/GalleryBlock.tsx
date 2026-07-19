@@ -84,6 +84,8 @@ const GalleryImageItem = memo(
   },
 );
 
+GalleryImageItem.displayName = 'GalleryImageItem';
+
 export const GalleryBlock = ({ data }: GalleryBlockProps) => {
   const { colors, fontFamily, borderRadius } = useTheme();
   const [selectedImageIndex, setSelectedImageIndex] = useState<number | null>(null);

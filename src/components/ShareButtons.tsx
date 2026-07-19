@@ -23,7 +23,6 @@ export const ShareButtons = ({
   brideName,
   weddingDate,
   venue,
-  venueAddress: _venueAddress,
   invitationUrl,
   mainImageUrl,
 }: ShareButtonsProps) => {
