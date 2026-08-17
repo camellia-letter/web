@@ -24,10 +24,30 @@ export const SNAP_MESSAGES = {
   ERROR_NETWORK: '사진 업로드에 실패했어요.\n잠시 후 다시 시도해 주세요.',
   ERROR_PARTIAL: '일부 사진을 업로드하지 못했어요.',
   ERROR_UPLOADER_NAME: '이름을 입력해 주세요.',
+  ERROR_DEVICE_LIMIT:
+    '한 분당 최대 20장까지 보내주실 수 있어요.\n소중한 순간을 나눠주셔서 감사합니다.',
+  ERROR_FILE_TYPE: '지원하지 않는 이미지 형식이에요.',
+  ERROR_UPLOADER_NAME_TOO_LONG: '이름은 50자 이하로 입력해 주세요.',
 } as const;
 
+/** API가 내려주는 에러 코드 → 사용자 메시지 */
+export const SNAP_ERROR_CODE_MESSAGES: Record<string, string> = {
+  SNAP_UPLOAD_CLOSED: SNAP_MESSAGES.ERROR_UPLOAD_CLOSED,
+  SNAP_UPLOAD_DEVICE_LIMIT_EXCEEDED: SNAP_MESSAGES.ERROR_DEVICE_LIMIT,
+  SNAP_UPLOAD_MAX_FILES_EXCEEDED: SNAP_MESSAGES.ERROR_FILE_COUNT,
+  SNAP_UPLOAD_MAX_FILE_SIZE_EXCEEDED: SNAP_MESSAGES.ERROR_FILE_SIZE,
+  SNAP_UPLOAD_INVALID_FILE_TYPE: SNAP_MESSAGES.ERROR_FILE_TYPE,
+  SNAP_UPLOAD_UPLOADER_NAME_TOO_LONG: SNAP_MESSAGES.ERROR_UPLOADER_NAME_TOO_LONG,
+  SNAP_UPLOAD_FAILED: SNAP_MESSAGES.ERROR_NETWORK,
+};
+
 export interface SnapUploadResponse {
-  success: boolean;
+  success?: boolean;
+  /** 실패 시 API가 내려주는 에러 정보 (HttpExceptionFilter 형식) */
+  error?: {
+    code?: string;
+    message?: string;
+  };
   uploadedCount?: number;
   failedCount?: number;
   failedFiles?: string[];

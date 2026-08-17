@@ -59,7 +59,7 @@ After changes, ALWAYS run:
 
 Do NOT modify unless explicitly asked:
 
-- packages/shared/\*\*
+- `@camellia-letter/shared-types` 패키지 내용 (별도 `types` 저장소에서 관리)
 - authentication logic
 - query key structure
 - block system types

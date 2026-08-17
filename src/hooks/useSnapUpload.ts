@@ -1,6 +1,10 @@
 import { useState, useCallback } from 'react';
 import { uploadSnaps, getSnapCount } from '@/lib/snap.api';
-import { SNAP_CONSTANTS, SNAP_MESSAGES } from '@/constants/snap.constants';
+import {
+  SNAP_CONSTANTS,
+  SNAP_MESSAGES,
+  SNAP_ERROR_CODE_MESSAGES,
+} from '@/constants/snap.constants';
 import { useToast } from '@/components/ui/Toast';
 
 export const useSnapUpload = (invitationId: string) => {
@@ -101,6 +105,24 @@ export const useSnapUpload = (invitationId: string) => {
 
         if (!result) {
           addToast('error', SNAP_MESSAGES.ERROR_NETWORK);
+          return;
+        }
+
+        // API 에러 케이스 (성공 응답에는 success 필드가 없다)
+        if (result.success === false) {
+          const errorCode = result.error?.message ?? '';
+
+          if (errorCode === 'SNAP_UPLOAD_CLOSED') {
+            setIsClosed(true);
+            addToast('info', SNAP_MESSAGES.CLOSED);
+            await fetchCount();
+            return;
+          }
+
+          addToast(
+            'error',
+            SNAP_ERROR_CODE_MESSAGES[errorCode] ?? SNAP_MESSAGES.ERROR_NETWORK,
+          );
           return;
         }
 

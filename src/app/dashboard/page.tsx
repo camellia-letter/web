@@ -202,11 +202,11 @@ const DashboardPage = async () => {
   // 사용자 상태 확인
   const userStatus = await getUserStatus(session.user.id);
 
-  if (userStatus?.status === 'pending') {
+  if (userStatus?.status === 'PENDING') {
     return <PendingApprovalScreen />;
   }
 
-  if (userStatus?.status === 'rejected') {
+  if (userStatus?.status === 'REJECTED') {
     return <RejectedScreen reason={userStatus.rejectionReason} />;
   }
 

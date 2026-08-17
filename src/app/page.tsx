@@ -1,4 +1,5 @@
 import {
+  Button,
   Card,
   Container,
   Flex,
@@ -23,6 +24,7 @@ import {
   IconRoute,
   IconWallet,
 } from "@tabler/icons-react";
+import Link from "next/link";
 import { auth } from "@/auth";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
@@ -169,7 +171,6 @@ const Home = async () => {
                   <br />더 특별하게 만들어드립니다.
                 </Text>
               </Stack>
-              {/* 임시로 로그인 버튼 비활성화
               <Button
                 component={Link}
                 href="/auth/signin"
@@ -180,7 +181,6 @@ const Home = async () => {
               >
                 우리의 청첩장 만들기
               </Button>
-              */}
             </Stack>
           </Container>
         </Flex>
@@ -242,7 +242,6 @@ const Home = async () => {
                   회원가입 후 5분 안에 나만의 청첩장을 만들 수 있습니다
                 </Text>
               </Stack>
-              {/* 임시로 로그인 버튼 비활성화
               <Button
                 component={Link}
                 href="/auth/signin"
@@ -253,7 +252,6 @@ const Home = async () => {
               >
                 우리의 청첩장 만들기
               </Button>
-              */}
             </Stack>
           </Container>
         </Paper>

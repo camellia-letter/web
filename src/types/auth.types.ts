@@ -1,4 +1,4 @@
-export type UserStatus = 'pending' | 'active' | 'rejected';
+export type UserStatus = 'PENDING' | 'ACTIVE' | 'REJECTED';
 
 export interface UserStatusInfo {
   userId: string;
