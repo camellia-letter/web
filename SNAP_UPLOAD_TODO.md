@@ -36,23 +36,26 @@
 
 ---
 
+## ✅ 배포 후 완료 (2026-08-17 ~ 08-18)
+
+- [x] **`TRUST_PROXY` 환경변수 설정** — Cloudtype에 `TRUST_PROXY=1` 적용,
+      실측 검증 완료. Throttler도 함께 정상화됐다
+- [x] `uploadedBy` 컬럼 마이그레이션 적용
+      (`20260817000000_add_uploaded_by_to_snap_image`)
+- [x] 업로드 부분 실패 시 롤백 — R2 오브젝트·DB 행을 함께 되돌린다 (`api f260f90`)
+- [x] 비ASCII 파일명 대응 — **"실패할 수 있다"가 아니라 100% 실패하고 있었다.**
+      원인도 예상과 달랐다. busboy가 파일명을 latin1로 디코딩 →
+      `x-amz-meta-originalname`이 비ASCII가 됨 → SigV4 서명 불일치로 R2가
+      `SignatureDoesNotMatch` 반환. 파일명을 UTF-8로 복원하고 metadata에서
+      `originalName`을 제거했다 (DB `fileName`에 이미 있어 중복이었다). `api f260f90`
+
+---
+
 ## 🚧 남은 작업
-
-### 배포 전 필수
-
-- [ ] **`TRUST_PROXY` 환경변수 설정** — 리버스 프록시 뒤에 배포하는 경우 필수.
-      설정하지 않으면 모든 하객이 프록시 IP를 공유해 스냅 업로드가 20장에서 전부 막힌다.
-      (`api/.env.example`의 Trust Proxy 항목 참고)
-- [ ] `uploadedBy` 컬럼 마이그레이션 적용
-      (`api/prisma/migrations/20260817000000_add_uploaded_by_to_snap_image/`)
 
 ### 미구현 (선택)
 
 - [ ] Admin 스냅 갤러리 뷰어 — 업로드된 스냅을 관리자가 조회하는 페이지
-- [ ] 업로드 부분 실패 시 롤백 — 현재는 중간에 실패하면 이미 올라간 파일이
-      R2와 DB에 남은 채 `SNAP_UPLOAD_FAILED`를 반환한다
-- [ ] 비ASCII 파일명 대응 — S3 metadata 헤더는 ASCII만 허용하므로
-      한글 파일명 업로드 시 실패할 수 있다 (`storage.service.ts`의 `metadata.originalName`)
 
 ### 테스트
 
@@ -73,4 +76,4 @@
 
 ---
 
-**마지막 업데이트:** 2026-08-17
+**마지막 업데이트:** 2026-08-19
